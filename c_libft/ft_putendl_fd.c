@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 16:13:08 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/17 17:40:09 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/19 00:10:19 by josefelghnam      #+#    #+#             */
+/*   Updated: 2025/04/19 00:40:01 by josefelghnam     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+void	ft_putendl_fd(char *s, int fd)
 {
-	size_t	len;
-	char	*p;
-
-	len = ft_strlen(s) + 1;
-	p = malloc(len * sizeof(char));
-	if (!p)
-		return (0);
-	ft_strlcpy(p, s, len);
-	return (p);
+	if (fd < 0)
+		return ;
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }
 
-// #include <stdio.h>
+// #include <fcntl.h>
+// #include <unistd.h>
 // int main(void)
 // {
-// 	char	*p;
+// 	int fd;
 
-// 	p = ft_strdup("\n");
-// 	printf("%s", p);
-// 	free(p);
+// 	fd = open("test", O_RDWR);
+// 	ft_putendl_fd("HIHIHIH", fd);
+// 	ft_putendl_fd("SECOND LINE", fd);
+// 	close(fd);
 // 	return (0);
 // }

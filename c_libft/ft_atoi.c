@@ -6,7 +6,7 @@
 /*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 20:17:04 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/17 14:53:23 by josefelghnam     ###   ########.fr       */
+/*   Updated: 2025/04/17 17:53:39 by josefelghnam     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,3 @@ int	ft_atoi(const char *nptr)
 		return (-2147483648);
 	return ((int)res * sign);
 }
-
-// #include <stdio.h>
-// int main(void)
-// {
-// 	printf("%d\n", ft_atoi("+2342"));
-// 	printf("%d\n", ft_atoi("-2342"));
-// 	printf("%d\n", ft_atoi("\t\n\v\f\r2342"));
-// 	printf("%d\n", ft_atoi("   	+2342"));
-// 	printf("%d\n", ft_atoi("   	-2342"));
-// 	printf("%d\n", ft_atoi("   	2342"));
-// 	printf("%d\n", ft_atoi("   	++2342"));
-// 	printf("%d\n", ft_atoi("   	2147483646"));
-// 	printf("%d\n", ft_atoi("   	2147483649"));
-// 	printf("%d\n", ft_atoi("   	-2147483647"));
-// 	printf("%d\n", ft_atoi("   	"));
-// 	printf("%d\n", ft_atoi("   	00"));
-// 	printf("%d\n", ft_atoi("   	0001"));
-// 	printf("%d\n", ft_atoi("   	-01"));
-// 	printf("%d\n", ft_atoi("   	-"));
-// 	return (0);
-// }

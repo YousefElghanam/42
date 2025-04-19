@@ -1,37 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 16:13:08 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/17 17:40:09 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/18 22:34:05 by josefelghnam      #+#    #+#             */
+/*   Updated: 2025/04/18 23:35:34 by josefelghnam     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	size_t	len;
-	char	*p;
+	unsigned int	i;
 
-	len = ft_strlen(s) + 1;
-	p = malloc(len * sizeof(char));
-	if (!p)
-		return (0);
-	ft_strlcpy(p, s, len);
-	return (p);
+	i = 0;
+	while (*s)
+	{
+		f(i, s);
+		s++;
+		i++;
+	}
 }
+
+// void	to_upper(unsigned int i, char *c)
+// {
+// 	if (i < 15)
+// 		if (97 <= *c && *c <= 122)
+// 			*c = *c - 32;
+// }
 
 // #include <stdio.h>
 // int main(void)
 // {
-// 	char	*p;
-
-// 	p = ft_strdup("\n");
-// 	printf("%s", p);
-// 	free(p);
+// 	char	str[] = "this will be capital";
+// 	ft_striteri(str, &to_upper);
+// 	printf("%s\n", str);
 // 	return (0);
 // }

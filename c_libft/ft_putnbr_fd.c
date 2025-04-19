@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 16:13:08 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/17 17:40:09 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/19 00:37:43 by josefelghnam      #+#    #+#             */
+/*   Updated: 2025/04/19 00:44:22 by josefelghnam     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t	len;
-	char	*p;
-
-	len = ft_strlen(s) + 1;
-	p = malloc(len * sizeof(char));
-	if (!p)
-		return (0);
-	ft_strlcpy(p, s, len);
-	return (p);
+	if (fd < 0)
+		return ;
+	ft_putstr_fd(ft_itoa(n), fd);
 }
 
-// #include <stdio.h>
-// int main(void)
-// {
-// 	char	*p;
+// #include <fcntl.h>
+// #include <unistd.h>
 
-// 	p = ft_strdup("\n");
-// 	printf("%s", p);
-// 	free(p);
+// int	main(void)
+// {
+// 	int	fd;
+
+// 	fd = open("test", O_RDWR);
+// 	ft_putnbr_fd(0, fd);
 // 	return (0);
 // }

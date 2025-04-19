@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 16:13:08 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/17 17:40:09 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/18 23:52:27 by josefelghnam      #+#    #+#             */
+/*   Updated: 2025/04/19 00:01:24 by josefelghnam     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
-char	*ft_strdup(const char *s)
+void	ft_putchar_fd(char c, int fd)
 {
-	size_t	len;
-	char	*p;
-
-	len = ft_strlen(s) + 1;
-	p = malloc(len * sizeof(char));
-	if (!p)
-		return (0);
-	ft_strlcpy(p, s, len);
-	return (p);
+	if (fd < 0)
+		return ;
+	write(fd, &c, 1);
 }
 
-// #include <stdio.h>
+// #include <fcntl.h>
 // int main(void)
 // {
-// 	char	*p;
+// 	int fd;
 
-// 	p = ft_strdup("\n");
-// 	printf("%s", p);
-// 	free(p);
+// 	fd = open("test", O_RDWR);
+// 	ft_putchar_fd('s', fd);
 // 	return (0);
 // }
