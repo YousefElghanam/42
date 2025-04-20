@@ -4,34 +4,34 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SOURCES_ALL = $(wildcard *.c)
+SOURCES = $(wildcard *.c)
 
-SOURCES = $(filter-out %_bonus.c, $(SOURCES_ALL))
+BASE_SOURCES = $(filter-out %_bonus.c, $(SOURCES))
 
-#BONUS_SOURCES = $(filter %_bonus.c, $(SOURCES_ALL))
+BONUS_SOURCES = $(filter %_bonus.c, $(SOURCES))
 
-SOURCES_USED = $(SOURCES)
+BASE_OBJECTS = $(BASE_SOURCES:.c=.o)
 
-OBJECTS = $(SOURCES_USED:.c=.o)
+BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
-	ar rcs $(NAME) $(OBJECTS)
-	make clean
+$(NAME): $(BASE_OBJECTS)
+	ar rcs $(NAME) $(BASE_OBJECTS)
+
+bonus: $(NAME) $(BONUS_OBJECTS)
+	ar rcs $(NAME) $(BONUS_OBJECTS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
-	rm -rf $(OBJECTS)
+	rm -rf $(BASE_OBJECTS) $(BONUS_OBJECTS)
 
 fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
 
-bonus: SOURCES_USED = $(SOURCES_ALL)
-bonus: clean $(NAME)
 
 .PHONY: all clean fclean re bonus
