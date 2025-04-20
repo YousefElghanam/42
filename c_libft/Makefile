@@ -8,7 +8,7 @@ SOURCES_ALL = $(wildcard *.c)
 
 SOURCES = $(filter-out %_bonus.c, $(SOURCES_ALL))
 
-BONUS_SOURCES = $(filter %_bonus.c, $(SOURCES_ALL))
+#BONUS_SOURCES = $(filter %_bonus.c, $(SOURCES_ALL))
 
 SOURCES_USED = $(SOURCES)
 
