@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 18:03:39 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/16 18:05:07 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/16 18:03:39 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/22 14:32:07 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_toupper(int c)
 {
-	if (97 <= c && c <= 122)
+	if ('a' <= c && c <= 'z')
 		return (c - 32);
 	return (c);
 }

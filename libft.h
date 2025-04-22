@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 21:54:09 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/20 15:20:14 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/14 21:54:09 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/22 14:18:22 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <string.h>
 # include <stdlib.h>
 # include <stdint.h>
-# include <errno.h>
 
 typedef struct s_list
 {

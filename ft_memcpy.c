@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 21:53:53 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/14 21:53:56 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/14 21:53:53 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/22 13:49:59 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,16 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 		*p_dest++ = *p_src++;
 	return (dest);
 }
+
+// #include <stdio.h>
+// #include <unistd.h>
+
+// int	main(void)
+// {
+// 	char	*str = ft_strdup("this is the string!!!");
+// 	char	*dst = malloc(22 * sizeof(char));
+
+// 	printf("%s\n", (char *)ft_memcpy(dst, str, 5));
+// 	write(1, dst, 30);
+// 	return (0);
+// }

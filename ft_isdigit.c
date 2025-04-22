@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 21:53:48 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/14 21:53:49 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/14 21:53:48 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/22 12:33:34 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isdigit(int c)
 {
-	return (48 <= c && c <= 57);
+	return ('0' <= c && c <= '9');
 }

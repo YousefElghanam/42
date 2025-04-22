@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 16:13:08 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/17 17:40:09 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/17 16:13:08 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/22 17:48:09 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

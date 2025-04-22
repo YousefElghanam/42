@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 20:17:04 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/17 17:53:39 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/16 20:17:04 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/22 17:37:44 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_atoi(const char *nptr)
 		res = res * 10 + (nptr[i++] - '0');
 	if (res > 2147483647 && sign == 1)
 		return (2147483647);
-	if (res > 2147483648 && sign == -1)
+	if (res > 2147483647 && sign == -1)
 		return (-2147483648);
 	return ((int)res * sign);
 }

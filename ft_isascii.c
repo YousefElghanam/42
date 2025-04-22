@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 21:53:46 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/14 21:53:46 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/14 21:53:46 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/22 12:42:46 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

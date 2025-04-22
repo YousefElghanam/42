@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 19:17:58 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/16 19:31:25 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/16 19:17:58 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/22 15:29:18 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

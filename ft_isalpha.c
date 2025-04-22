@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 21:53:42 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/14 21:53:42 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/14 21:53:42 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/22 12:42:29 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isalpha(int c)
 {
-	return ((65 <= c && c <= 90) || (97 <= c && c <= 122));
+	return (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'));
 }

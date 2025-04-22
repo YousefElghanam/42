@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 21:54:07 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/17 16:10:54 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/14 21:54:07 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/22 12:56:12 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

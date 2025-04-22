@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 21:53:33 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/17 16:10:22 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/14 21:53:33 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/22 13:21:56 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
