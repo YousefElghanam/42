@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/18 22:32:35 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/18 23:36:56 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/18 22:32:35 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/23 18:08:28 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		return (0);
 	while (s[++i])
 		res[i] = f(i, (s[i]));
+	res[i] = 0;
 	return (res);
 }
 
@@ -39,6 +40,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 // #include <stdio.h>
 // int main(void)
 // {
-// 	printf("%s\n", ft_strmapi("this will be capital", &to_upper));
+// 	char	*str = ft_strmapi("", &to_upper);
+// 	printf("%s\n", str);
 // 	return (0);
 // }

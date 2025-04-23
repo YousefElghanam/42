@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/19 19:50:59 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/19 20:15:16 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/19 19:50:59 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/23 18:48:54 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,17 @@ t_list	*ft_lstnew(void *content)
 }
 
 // #include <stdio.h>
+// #include <unistd.h>
 
 // int main(void)
 // {
 // 	t_list	*x;
+// 	int	num = 65;
 
-// 	x = ft_lstnew("something");
+// 	x = ft_lstnew(&num);
 // 	printf("%s\n", (char *)(*x).content);
+// 	x = ft_lstnew("hahaha hohoho");
+// 	printf("%s\n", (char *)(*x).content);
+// 	// write (1, x, sizeof(int));
 // 	return (0);
 // }

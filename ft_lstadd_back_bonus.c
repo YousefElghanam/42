@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/19 20:59:24 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/19 21:15:19 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/19 20:59:24 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/23 19:07:12 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

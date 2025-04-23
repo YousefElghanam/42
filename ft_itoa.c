@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/18 15:33:23 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/18 22:31:31 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/18 15:33:23 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/23 17:59:43 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 static size_t	num_len(int n)
 {
 	size_t	len;
-	int		num;
+	long	num;
 
 	len = 1;
-	num = n;
+	num = (long)n;
 	if (num < 0)
 	{
 		num = -num;
@@ -63,6 +63,6 @@ char	*ft_itoa(int n)
 // #include <stdio.h>
 // int main(void)
 // {
-// 	printf("%s\n", ft_itoa(233));
+// 	printf("%s\n", ft_itoa(0));
 // 	return (0);
 // }

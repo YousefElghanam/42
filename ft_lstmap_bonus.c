@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 15:20:17 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/20 23:41:01 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/20 15:20:17 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/23 21:35:55 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

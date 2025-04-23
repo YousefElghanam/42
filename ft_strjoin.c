@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 19:59:28 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/17 20:17:48 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/17 19:59:28 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/23 17:08:05 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 // #include <stdio.h>
 // int main(void)
 // {
-// 	printf("%s\n", ft_strjoin("1", "2"));
+// 	printf("%s\n", ft_strjoin("", "23"));
 // 	return (0);
 // }

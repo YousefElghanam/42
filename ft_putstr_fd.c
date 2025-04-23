@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/18 23:56:06 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/19 00:01:48 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/18 23:56:06 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/23 18:19:59 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

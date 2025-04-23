@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 20:53:07 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/18 22:32:18 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/17 20:53:07 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/23 17:43:02 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	**ft_split(char const *s, char c)
 // #include <stdio.h>
 // int main(void)
 // {
-// 	char **res = ft_split("This is the splitted string", ' ');
+// 	char **res = ft_split("	This is the 	splitted string", '	');
 // 	for (int i = 0; res[i]; i++)
 // 	{
 // 		printf("%s\n", res[i]);

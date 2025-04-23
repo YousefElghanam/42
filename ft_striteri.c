@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josefelghnam <josefelghnam@student.42.fr>  +#+  +:+       +#+        */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/18 22:34:05 by josefelghnam      #+#    #+#             */
-/*   Updated: 2025/04/18 23:35:34 by josefelghnam     ###   ########.fr       */
+/*   Created: 2025/04/18 22:34:05 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/23 18:14:15 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,16 @@
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	unsigned int	i;
+	int	i;
 
-	i = 0;
+	i = -1;
 	while (*s)
-	{
-		f(i, s);
-		s++;
-		i++;
-	}
+		f((unsigned int)++i, s++);
 }
 
 // void	to_upper(unsigned int i, char *c)
 // {
-// 	if (i < 15)
+// 	if (i < 3)
 // 		if (97 <= *c && *c <= 122)
 // 			*c = *c - 32;
 // }
