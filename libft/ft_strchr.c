@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 18:30:46 by josefelghna       #+#    #+#             */
-/*   Updated: 2025/04/22 14:55:39 by jel-ghna         ###   ########.fr       */
+/*   Created: 2025/04/16 18:08:22 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/24 20:37:13 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strrchr(const char *s, int c)
-{
-	char	*res;
+#include "libft.h"
 
-	res = 0;
+char	*ft_strchr(const char *s, int c)
+{
 	while (*s++)
 		if (*(s - 1) == c)
-			res = (char *)(s - 1);
+			return ((char *)(s - 1));
 	if (c == 0)
-		return ((char *)s);
-	return (res);
+		return ((char *)(s - 1));
+	return (NULL);
 }
 
 // #include <stdio.h>
@@ -28,10 +27,7 @@ char	*ft_strrchr(const char *s, int c)
 
 // int	main(void)
 // {
-// 	char	*str;
-
-// 	str = "this is the string";
-// 	printf("%s\n", ft_strrchr(str, 'i'));
-// 	write(1, ft_strrchr(str, 'i'), 3);
+// 	printf("%s\n", ft_strchr("this is the string", 0));
+// 	// write(1, ft_strchr(str, 'i'), 1);
 // 	return (0);
 // }

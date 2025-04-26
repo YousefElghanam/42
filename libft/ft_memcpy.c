@@ -6,7 +6,7 @@
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:53:53 by josefelghna       #+#    #+#             */
-/*   Updated: 2025/04/22 13:49:59 by jel-ghna         ###   ########.fr       */
+/*   Updated: 2025/04/25 17:34:38 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,19 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 
 // #include <stdio.h>
 // #include <unistd.h>
+// #include <string.h>
 
 // int	main(void)
 // {
-// 	char	*str = ft_strdup("this is the string!!!");
-// 	char	*dst = malloc(22 * sizeof(char));
+// 	char	*str = ft_strdup("123456789");
+// 	// char	*dst = malloc(22 * sizeof(char));
+// 	ft_memcpy(str + 5, str, 1000);
+// 	printf("%s\n", str);
+// 	// write(1, dst, 30);
 
-// 	printf("%s\n", (char *)ft_memcpy(dst, str, 5));
-// 	write(1, dst, 30);
+// 	char	*str1 = ft_strdup("123456789");
+// 	// char	*dst1 = malloc(22 * sizeof(char));
+// 	memcpy(str1 + 5, str1, 1000);
+// 	printf("%s\n", str1);
 // 	return (0);
 // }

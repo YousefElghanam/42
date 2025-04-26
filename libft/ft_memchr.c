@@ -1,43 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 19:43:19 by josefelghna       #+#    #+#             */
-/*   Updated: 2025/04/22 17:29:58 by jel-ghna         ###   ########.fr       */
+/*   Created: 2025/04/16 19:04:12 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/25 16:27:45 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	i;
-	size_t	lil_len;
+	unsigned char	*p;
+	size_t			i;
 
-	if (len == 0)
-		return (0);
+	p = (unsigned char *)s;
 	i = 0;
-	lil_len = ft_strlen(little);
-	if (lil_len == 0)
-		return ((char *)big);
-	while (i + lil_len <= ft_strlen(big) && i + lil_len <= len)
-	{
-		if (ft_strncmp(big + i, little, lil_len) == 0)
-			return ((char *)big + i);
-		i++;
-	}
+	while (i++ < n)
+		if (*p++ == (unsigned char)c)
+			return (p - 1);
 	return (0);
 }
 
 // #include <stdio.h>
 // #include <unistd.h>
+// #include <string.h>
 
 // int	main(void)
 // {
-// 	// write(1, ft_strnstr("VeryBigString", "Big", 7), 40);
-// 	printf("%s\n", ft_strnstr("VeryBigString1", "1", 14));
+// 	char	*str = malloc(200);
+
+// 	str = ft_strdup("this is the string");
+// 	printf("%p\n", memchr(str, ' ', 18));
+// 	printf("%p\n", ft_memchr(str, ' ', 18));
+// 	// write(1, ft_memchr(str, ' ', 5), 5);
 // 	return (0);
 // }

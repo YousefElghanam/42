@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 19:04:12 by josefelghna       #+#    #+#             */
-/*   Updated: 2025/04/22 15:35:03 by jel-ghna         ###   ########.fr       */
+/*   Created: 2025/04/16 18:30:46 by josefelghna       #+#    #+#             */
+/*   Updated: 2025/04/24 20:05:54 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_strrchr(const char *s, int c)
 {
-	unsigned char	*p;
-	size_t			i;
+	char	*res;
 
-	p = (unsigned char *)s;
-	i = 0;
-	while (i++ < n)
-		if (*p++ == (unsigned char)c)
-			return (p - 1);
-	return (0);
+	res = 0;
+	while (*s++)
+		if (*(s - 1) == c)
+			res = (char *)(s - 1);
+	if (c == 0)
+		return ((char *)(s - 1));
+	return (res);
 }
 
 // #include <stdio.h>
@@ -32,8 +30,9 @@ void	*ft_memchr(const void *s, int c, size_t n)
 // {
 // 	char	*str;
 
-// 	str = "this is the string";
-// 	printf("%p\n", ft_memchr(str, ' ', 5));
-// 	write(1, ft_memchr(str, ' ', 5), 5);
+// 	str = "1";
+// 	printf("%p\n", ft_strrchr(str, 0));
+// 	printf("%p\n", str + 1);
+// 	// write(1, ft_strrchr(str, 'i'), 3);
 // 	return (0);
 // }
