@@ -1,61 +1,157 @@
 #include "get_next_line.h"
 
-char	*dupstr(const char *s)
+// char	*dupstr(const char *s)
+// {
+// 	char	*p;
+// 	size_t	i;
+
+// 	i = 0;
+// 	while (s[i])
+// 		i++;
+// 	p = malloc((i + 1) * sizeof(char));
+// 	if (!p)
+// 		return (0);
+// 	while (i--)
+// 		p[i] = s[i];
+// 	p[0] = s[0];
+// 	return (p);
+// }
+
+// void	lstclear(t_str_list **lst)
+// {
+// 	t_str_list	*next;
+
+// 	while (*lst)
+// 	{
+// 		next = (*lst)->next;
+// 		free((*lst)->str);
+// 		free((*lst));
+// 		*lst = next;
+// 	}
+// 	*lst = NULL;
+// }
+
+// int	lstadd_back(t_str_list **lst, t_str_list *new)
+// {
+// 	t_str_list	*node;
+
+// 	if (!new)
+// 		return (0);
+// 	node = *lst;
+// 	if (!node)
+// 		return (*lst = new, 1);
+// 	while (node->next)
+// 		node = node->next;
+// 	node->next = new;
+// 	return (1);
+// }
+
+// t_str_list	*lst_new(char *str)
+// {
+// 	t_str_list	*node;
+
+// 	node = malloc(sizeof(t_str_list));
+// 	if (!node)
+// 		return (NULL);
+// 	node->str = (dupstr(str));
+// 	node->next = 0;
+// 	return (node);
+// }
+
+size_t	ft_strlen(const char *s)
 {
-	char	*p;
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (s[i])
 		i++;
-	p = malloc((i + 1) * sizeof(char));
-	if (!p)
-		return (0);
-	while (i--)
-		p[i] = s[i];
-	p[0] = s[0];
-	return (p);
+	return (i);
 }
 
-void	lstclear(t_str_list **lst)
-{
-	t_str_list	*next;
 
-	while (*lst)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dsize)
+{
+	size_t	i;
+
+	i = 0;
+	while (src[i] && i < dsize - 1 && dsize)
 	{
-		next = (*lst)->next;
-		free((*lst)->str);
-		free((*lst));
-		*lst = next;
+		dst[i] = src[i];
+		i++;
 	}
-	*lst = NULL;
+	if (dsize > 0)
+		dst[i] = 0;
+	return (ft_strlen(src));
 }
 
-int	lstadd_back(t_str_list **lst, t_str_list *new)
+static size_t	len_till_delimiter(char const *s, char c)
 {
-	t_str_list	*node;
+	size_t	i;
 
-	if (!new)
+	i = 0;
+	while (*s && *s != c)
+	{
+		s++;
+		i++;
+	}
+	return (i);
+}
+
+static int	one_more_string(char ***res, size_t size, char const *s, char c)
+{
+	char	**new_res;
+	char	*sub_string;
+	size_t	sub_size;
+	size_t	i;
+
+	i = -1;
+	new_res = malloc((size + 1) * sizeof(char *));
+	if (!new_res)
 		return (0);
-	node = *lst;
-	if (!node)
-		return (*lst = new, 1);
-	while (node->next)
-		node = node->next;
-	node->next = new;
+	while (++i < size)
+		new_res[i] = (*res)[i];
+	free(*res);
+	*res = new_res;
+	sub_size = len_till_delimiter(s, c);
+	sub_string = malloc((sub_size + 1) * sizeof(char));
+	if (!sub_string)
+	{
+		while (i > 0)
+			free(res[i--]);
+		free(res);
+		return (0);
+	}
+	ft_strlcpy(sub_string, s, sub_size + 1);
+	(*res)[i] = sub_string;
 	return (1);
 }
 
-t_str_list	*lst_new(char *str)
+char	**ft_split(char const *s, char c)
 {
-	t_str_list	*node;
+	char	**res;
+	char	**tmp;
+	size_t	i;
 
-	node = malloc(sizeof(t_str_list));
-	if (!node)
-		return (NULL);
-	node->str = (dupstr(str));
-	node->next = 0;
-	return (node);
+	i = 0;
+	res = 0;
+	while (*s)
+	{
+		if (*s != c)
+		{
+			if (!one_more_string(&res, i, s, c))
+				return (0);
+			while (*s && *s != c)
+				s++;
+			i++;
+		}
+		while (*s && *s == c)
+			s++;
+	}
+	tmp = malloc((i + 1) * sizeof(char *));
+	ft_memcpy(tmp, res, i * sizeof(char *));
+	free(res);
+	tmp[i] = NULL;
+	return (tmp);
 }
 
 // size_t	linelen(const char *s)
