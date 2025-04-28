@@ -6,7 +6,7 @@
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 19:59:28 by josefelghna       #+#    #+#             */
-/*   Updated: 2025/04/23 17:08:05 by jel-ghna         ###   ########.fr       */
+/*   Updated: 2025/04/28 13:19:18 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	len = ft_strlen(s1) + ft_strlen(s2);
 	res = malloc((len + 1) * sizeof(char));
 	if (!res)
-		return (0);
+		return (NULL);
 	ft_strlcpy(res + ft_strlcpy(res, s1, len + 1), s2, len + 1);
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:13:08 by josefelghna       #+#    #+#             */
-/*   Updated: 2025/04/22 17:48:09 by jel-ghna         ###   ########.fr       */
+/*   Updated: 2025/04/28 13:05:22 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strdup(const char *s)
 	len = ft_strlen(s) + 1;
 	p = malloc(len * sizeof(char));
 	if (!p)
-		return (0);
+		return (NULL);
 	ft_strlcpy(p, s, len);
 	return (p);
 }

@@ -6,7 +6,7 @@
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 22:32:35 by josefelghna       #+#    #+#             */
-/*   Updated: 2025/04/23 18:08:28 by jel-ghna         ###   ########.fr       */
+/*   Updated: 2025/04/28 13:20:25 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	len = ft_strlen(s);
 	res = malloc((len + 1) * sizeof(char));
 	if (!res)
-		return (0);
+		return (NULL);
 	while (s[++i])
 		res[i] = f(i, (s[i]));
 	res[i] = 0;

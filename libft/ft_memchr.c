@@ -6,7 +6,7 @@
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 19:04:12 by josefelghna       #+#    #+#             */
-/*   Updated: 2025/04/25 16:27:45 by jel-ghna         ###   ########.fr       */
+/*   Updated: 2025/04/28 13:12:54 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	while (i++ < n)
 		if (*p++ == (unsigned char)c)
 			return (p - 1);
-	return (0);
+	return (NULL);
 }
 
 // #include <stdio.h>

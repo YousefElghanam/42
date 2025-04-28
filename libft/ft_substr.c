@@ -6,7 +6,7 @@
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 19:22:05 by josefelghna       #+#    #+#             */
-/*   Updated: 2025/04/23 16:52:19 by jel-ghna         ###   ########.fr       */
+/*   Updated: 2025/04/28 13:05:37 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		len = s_len - start;
 	res = malloc((len + 1) * sizeof(char));
 	if (!res)
-		return (0);
+		return (NULL);
 	ft_strlcpy(res, s + start, len + 1);
 	return (res);
 }
@@ -34,7 +34,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 // {
 // 	char	*sub;
 
-// 	sub = ft_substr("2323232", 5, 2);
+// 	sub = ft_substr("0123456789", 0, 12);
 // 	printf("%s\n", sub);
 // 	free(sub);
 // 	return (0);

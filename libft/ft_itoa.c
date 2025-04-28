@@ -6,12 +6,11 @@
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:33:23 by josefelghna       #+#    #+#             */
-/*   Updated: 2025/04/23 17:59:43 by jel-ghna         ###   ########.fr       */
+/*   Updated: 2025/04/28 13:17:52 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static size_t	num_len(int n)
 {
@@ -43,7 +42,7 @@ char	*ft_itoa(int n)
 	len = num_len(n);
 	res = malloc((len + 1) * sizeof(char));
 	if (!res)
-		return (0);
+		return (NULL);
 	res[len] = 0;
 	if (n < 0)
 	{
@@ -63,6 +62,6 @@ char	*ft_itoa(int n)
 // #include <stdio.h>
 // int main(void)
 // {
-// 	printf("%s\n", ft_itoa(0));
+// 	printf("%s\n", ft_itoa(2));
 // 	return (0);
 // }

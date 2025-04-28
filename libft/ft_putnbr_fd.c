@@ -6,7 +6,7 @@
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 00:37:43 by josefelghna       #+#    #+#             */
-/*   Updated: 2025/04/23 18:19:57 by jel-ghna         ###   ########.fr       */
+/*   Updated: 2025/04/28 13:17:41 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ void	ft_putnbr_fd(int n, int fd)
 // 	int	fd;
 
 // 	fd = open("test", O_RDWR);
-// 	ft_putnbr_fd(0, fd);
+// 	ft_putnbr_fd(3, fd);
 // 	return (0);
 // }
