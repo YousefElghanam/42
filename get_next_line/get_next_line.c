@@ -151,14 +151,16 @@ char	*get_next_line(int fd)
 	return (NULL);
 }
 
-int	main(void)
+int main(void)
 {
-	char	*x;
 	int		fd;
-
+	char	*line;
+	
 	fd = open("test", O_RDWR);
-	x = get_next_line(fd);
-	if (x)
-		printf("%s\n", x);
+	line = get_next_line(fd);
+	printf("1. %s\n", line);
+	line = get_next_line(fd);
+	printf("2. %s\n", line);
+	close(fd);
 	return (0);
 }

@@ -10,6 +10,12 @@
 # include <stdio.h>
 # include <fcntl.h>
 
+typedef struct s_line_arr
+{
+	char	**arr;
+	int		count;
+} t_line_arr;
+
 // typedef struct s_str_list
 // {
 // 	char				*str;

@@ -68,7 +68,6 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-
 size_t	ft_strlcpy(char *dst, const char *src, size_t dsize)
 {
 	size_t	i;
@@ -84,6 +83,16 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dsize)
 	return (ft_strlen(src));
 }
 
+static void	clear_arr(char **arr, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+		free(arr[i++]);
+	free(arr);
+}
+
 static size_t	len_till_delimiter(char const *s, char c)
 {
 	size_t	i;
@@ -97,30 +106,27 @@ static size_t	len_till_delimiter(char const *s, char c)
 	return (i);
 }
 
-static int	one_more_string(char ***res, size_t size, char const *s, char c)
+static int	one_more_string(char ***res, size_t arr_size, char const *s, char c)
 {
-	char	**new_res;
+	char	**tmp_arr;
 	char	*sub_string;
 	size_t	sub_size;
 	size_t	i;
 
 	i = -1;
-	new_res = malloc((size + 1) * sizeof(char *));
-	if (!new_res)
-		return (0);
-	while (++i < size)
-		new_res[i] = (*res)[i];
+	tmp_arr = malloc((arr_size + 1) * sizeof(char *));
+	if (!tmp_arr)
+		return (clear_arr(*res, arr_size), 0);
+	while (++i < arr_size)
+		tmp_arr[i] = (*res)[i];
 	free(*res);
-	*res = new_res;
+	*res = tmp_arr;
+	if (*s == 0)
+		return (1);
 	sub_size = len_till_delimiter(s, c);
 	sub_string = malloc((sub_size + 1) * sizeof(char));
 	if (!sub_string)
-	{
-		while (i > 0)
-			free(res[i--]);
-		free(res);
-		return (0);
-	}
+		return (clear_arr(*res, i), 0);
 	ft_strlcpy(sub_string, s, sub_size + 1);
 	(*res)[i] = sub_string;
 	return (1);
@@ -129,29 +135,27 @@ static int	one_more_string(char ***res, size_t size, char const *s, char c)
 char	**ft_split(char const *s, char c)
 {
 	char	**res;
-	char	**tmp;
-	size_t	i;
+	size_t	arr_size;
 
-	i = 0;
-	res = 0;
+	arr_size = 0;
+	res = NULL;
 	while (*s)
 	{
 		if (*s != c)
 		{
-			if (!one_more_string(&res, i, s, c))
-				return (0);
+			if (!one_more_string(&res, arr_size, s, c))
+				return (NULL);
 			while (*s && *s != c)
 				s++;
-			i++;
+			arr_size++;
 		}
 		while (*s && *s == c)
 			s++;
 	}
-	tmp = malloc((i + 1) * sizeof(char *));
-	ft_memcpy(tmp, res, i * sizeof(char *));
-	free(res);
-	tmp[i] = NULL;
-	return (tmp);
+	if (!one_more_string(&res, arr_size, s, c))
+		return (NULL);
+	res[arr_size] = NULL;
+	return (res);
 }
 
 // size_t	linelen(const char *s)
