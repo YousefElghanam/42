@@ -8,11 +8,11 @@ int	is_valid_spec(char c)
 	return (0);
 }
 
-t_list	*init_list(void)
+t_llist	*init_list(void)
 {
-	t_list	*list;
+	t_llist	*list;
 
-	list = malloc(sizeof(t_list));
+	list = malloc(sizeof(t_llist));
 	if (!list)
 		return (NULL);
 	list->head = NULL;
@@ -37,7 +37,7 @@ t_node	*new_node(char *str, size_t size)
 	return (node);
 }
 
-int	add_node(t_list *list, t_node *node)
+int	add_node(t_llist *list, t_node *node)
 {
 	if (!node)
 		return (0);
@@ -50,20 +50,22 @@ int	add_node(t_list *list, t_node *node)
 	return (1);
 }
 
-void	clear_list(t_list *list)
+void	clear_list(t_llist **list)
 {
 	t_node	*node;
 	t_node	*next;
 
-	node = list->head;
-	while (list->size)
+	node = (*list)->head;
+	while ((*list)->size)
 	{
 		free(node->str);
 		next = node->next;
-		list->size -= 1;
+		(*list)->size -= 1;
 		free(node);
 		node = next;
 	}
+	free(*list);
+	*list = NULL;
 }
 
 void	*ft_memcpy(void *dest, const void *src, ssize_t n)
