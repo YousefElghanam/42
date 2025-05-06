@@ -6,17 +6,37 @@
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 00:37:43 by josefelghna       #+#    #+#             */
-/*   Updated: 2025/04/28 13:17:41 by jel-ghna         ###   ########.fr       */
+/*   Updated: 2025/05/01 13:17:26 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
 void	ft_putnbr_fd(int n, int fd)
 {
+	unsigned char	num;
+
 	if (fd < 0)
 		return ;
-	ft_putstr_fd(ft_itoa(n), fd);
+	if (n == 0)
+	{
+		write(fd, "0", 1);
+		return ;
+	}
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+	{
+		n = -n;
+		write(fd, "-", 1);
+	}
+	if (n >= 10)
+		ft_putnbr_fd(n / 10, fd);
+	num = (n % 10) + '0';
+	write(fd, &num, 1);
 }
 
 // #include <fcntl.h>
@@ -27,6 +47,6 @@ void	ft_putnbr_fd(int n, int fd)
 // 	int	fd;
 
 // 	fd = open("test", O_RDWR);
-// 	ft_putnbr_fd(3, fd);
+// 	ft_putnbr_fd(0215, fd);
 // 	return (0);
 // }

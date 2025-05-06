@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/03 13:47:04 by jel-ghna          #+#    #+#             */
-/*   Updated: 2025/05/04 10:54:31 by jel-ghna         ###   ########.fr       */
+/*   Created: 2025/05/03 20:02:20 by jel-ghna          #+#    #+#             */
+/*   Updated: 2025/05/04 10:56:00 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*mk_line(char **line, ssize_t *line_len, t_chunk *c)
 {
@@ -119,9 +119,6 @@ char	*get_next_line(int fd)
 }
 
 // #include <string.h>
-// #include <stddef.h>
-// #include <fcntl.h>
-// #include <stdint.h>
 
 // int	main(void)
 // {
@@ -132,7 +129,7 @@ char	*get_next_line(int fd)
 
 // 	fd = open("test", O_RDWR);
 // 	// file2 = open("test2", O_RDWR);
-// 	while ((line = get_next_line(fd)))
+// 	while ((line = get_next_line(0)))
 // 	{
 // 		write(1, line, strlen(line));//(">>>%s", line);
 // 		// diff_line = get_next_line(file2);

@@ -6,7 +6,7 @@
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 20:53:07 by josefelghna       #+#    #+#             */
-/*   Updated: 2025/04/28 13:05:21 by jel-ghna         ###   ########.fr       */
+/*   Updated: 2025/04/29 12:01:08 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	**ft_split(char const *s, char c)
 // #include <stdio.h>
 // int main(void)
 // {
-// 	char **res = ft_split(" This is the splitted string   ", ' ');
+// 	char **res = ft_split("", 'x');
 // 	if (!res)
 // 		printf("allocation failed, NOOB :D\n(NULL RETURNED)\n");
 // 	else

@@ -6,7 +6,7 @@
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 19:50:59 by josefelghna       #+#    #+#             */
-/*   Updated: 2025/04/28 13:12:40 by jel-ghna         ###   ########.fr       */
+/*   Updated: 2025/05/01 12:17:31 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list	*ft_lstnew(void *content)
 	if (!node)
 		return (NULL);
 	node->content = content;
-	node->next = 0;
+	node->next = NULL;
 	return (node);
 }
 

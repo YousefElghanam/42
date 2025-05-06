@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/03 13:47:07 by jel-ghna          #+#    #+#             */
-/*   Updated: 2025/05/03 20:12:59 by jel-ghna         ###   ########.fr       */
+/*   Created: 2025/05/03 20:02:07 by jel-ghna          #+#    #+#             */
+/*   Updated: 2025/05/03 20:08:59 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 ssize_t	has_nl(char *buffer, ssize_t bytes_read)
 {
@@ -37,18 +37,18 @@ void	lstclear(t_chunk **lst)
 	*lst = NULL;
 }
 
-int	lstadd_back(t_chunk **lst, t_chunk *new)
+int	lstadd_back(t_chunk **lst, t_chunk *ne)
 {
 	t_chunk	*node;
 
-	if (!new)
+	if (!ne)
 		return (0);
 	node = *lst;
 	if (!node)
-		return (*lst = new, 1);
+		return (*lst = ne, 1);
 	while (node->next)
 		node = node->next;
-	node->next = new;
+	node->next = ne;
 	return (1);
 }
 
