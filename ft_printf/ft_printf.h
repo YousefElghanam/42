@@ -1,27 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/08 18:07:20 by jel-ghna          #+#    #+#             */
+/*   Updated: 2025/05/09 18:34:24 by jel-ghna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <stdarg.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdint.h>
 #include "libft/libft.h"
 
-typedef struct	s_node
-{
-	char			*str;
-	size_t			size;
-	struct s_node	*next;
-} t_node;
-
-typedef struct	s_llist
-{
-	t_node	*head;
-	t_node	*tail;
-	size_t	size;
-} t_llist;
-
-int		is_valid_spec(char c);
-t_llist	*init_list(void);
-t_node	*new_node(char *str, size_t size);
-int		add_node(t_llist *list, t_node *node);
-void	clear_list(t_llist **list);
-ssize_t	count_specs(char *format);
-int		handle_spec_arg_counts(const char *format, va_list args);
+void	handle_sign(char c, va_list args, int *count);
+int		parse_format(const char *format, va_list args, int *count);
+int		ft_printf(const char *format, ...);
+int		is_valid_sign(char c);
+int		ft_putnbr_base(long nbr, char *base);
+int		ft_putnbr_base_p(uintptr_t nbr, char *base);
+int		write_c(char c);
+int		write_s(char *str);
+int		write_p(void *ptr);
+int		write_di(int num);
+int		write_u(unsigned int num);
+int		write_x(unsigned int num);
+int		write_cap_x(unsigned int num);
