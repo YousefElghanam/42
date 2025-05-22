@@ -1,10 +1,12 @@
-NAME = libftprintf.a
+NAME = push_swap
 
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SOURCES = ft_printf.c ft_utils.c ft_write_types.c ft_write_types2.c
+HEADER = push_swap.h
+
+SOURCES = main.c validate_args.c very_special_set.c
 
 BASE_SOURCES = $(filter-out %_bonus.c, $(SOURCES))
 
@@ -23,20 +25,19 @@ LIBFT_SOURCES =	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_is
 			ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c \
 			ft_substr.c ft_tolower.c ft_toupper.c ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c \
 			ft_lstclear_bonus.c ft_lstdelone_bonus.c ft_lstiter_bonus.c ft_lstlast_bonus.c \
-			ft_lstmap_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c
+			ft_lstmap_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c ft_printf.c ft_utils.c \
+			ft_write_types.c ft_write_types2.c
 
 LIBFT_OBJECTS = $(addprefix libft/,$(LIBFT_SOURCES:.c=.o))
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(BASE_OBJECTS) $(LIBFT_OBJECTS)
-	ar rcs $(NAME) $(LIBFT_OBJECTS) $(BASE_OBJECTS)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+$(NAME): $(LIBFT) $(BASE_SOURCES) $(HEADER)
+	$(CC) $(CFLAGS) $(BASE_SOURCES) $(LIBFT) -o $(NAME)
 
 $(LIBFT):
 	make bonus -C libft
+	make clean -C libft
 
 clean:
 	rm -rf $(BASE_OBJECTS) $(BONUS_OBJECTS)
@@ -47,12 +48,5 @@ fclean: clean
 	make fclean -C libft
 
 re: fclean all
-
-crit_test:
-	cc \
-    -I. -Iusr/include \
-    test.c ft_printf.c libftprintf.a \
-    -Lusr/include -lcriterion \
-    -o test_printf
 
 .PHONY: all clean fclean re bonus

@@ -15,7 +15,7 @@
 
 # include <stdarg.h>
 # include <unistd.h>
-# include "libft/libft.h"
+# include "libft.h"
 
 void	handle_sign(char c, va_list args, int *count);
 int		parse_format(const char *format, va_list args, int *count);
