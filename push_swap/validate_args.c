@@ -41,6 +41,8 @@ int	is_valid_int(char *str)
 	size_t	strlen;
 
 	i = 0;
+	if (!*str)
+		return (0);
 	if (str[i] == '+' || str[i] == '-')
 		i++;
 	strlen = ft_strlen(str);
