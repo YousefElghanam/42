@@ -1,28 +1,47 @@
 #include "push_swap.h"
 
+// static	void	swap_nodes(t_node *node_1, t_node *node_2)
+// {
+// 	t_node	*tmp;
+
+// 	tmp = node_2->next;
+// 	node_2->prev = node_1->prev;
+// 	node_2->next = node_1;
+// 	node_1->prev = node_1;
+// 	node_1->next = tmp;
+// }
+
 int	main(int argc, char **argv)
 {
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	t_stack	*stack_goal;
+	t_node	*node;
+	size_t	i;
+
+	i = 0;
+	if (!ft_alloc_list() || argc < 2)
+		return_error(3);
 	validate_args((size_t)argc, argv);
-    init_stack_a((size_t)argc - 1, argv);
-    init_stack_b();
-    solve();
+	stack_a = init_stack_a((size_t)argc - 1, argv);
+	stack_b = init_stack_b();
+	stack_goal = init_sorted_stack(stack_a);
+	node = stack_goal->head;
+	while (i++ < stack_goal->size)
+	{
+		ft_putnbr_fd(node->num, 1);
+		ft_putstr_fd("\n", 1);
+		node = node->next;
+	}
+	// solve(stack_a, stack_b, stack_goal);
 }
 
-typedef struct s_node
-{
-    int num;
-    int is_top;
-    int position;
-    struct s_node next;
-} t_node;
 
-typdef struct s_stack
-{
-    int size;
-    t_node top;
-}
-
-void init_stack_a(size_t n_count, char **argv)
-{
-    
-}
+// Make a "score" variable that has how many nodes are in their correct position relative to the number of all nodes
+// maybe save that variable in the stack struct
+// sorted: 			1  3  5  9  12  20
+// currnt: 			1  9  12 3  5   20
+// state:			two out of five are in correct position
+// score(1-100) :   (2 * 100) / 5 = 40 %
+// depending on score we can use different algorithms
+// keep in mind that also the position of each correct node matters

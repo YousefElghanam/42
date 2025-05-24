@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 HEADER = push_swap.h
 
-SOURCES = main.c validate_args.c very_special_set.c
+SOURCES = main.c validate_args.c very_special_set.c ft_malloc.c init_stacks.c init_stacks_2.c utils.c
 
 BASE_SOURCES = $(filter-out %_bonus.c, $(SOURCES))
 
@@ -36,7 +36,7 @@ $(NAME): $(LIBFT) $(BASE_SOURCES) $(HEADER)
 	$(CC) $(CFLAGS) $(BASE_SOURCES) $(LIBFT) -o $(NAME)
 
 $(LIBFT):
-	make bonus -C libft
+	make -C libft
 	make clean -C libft
 
 clean:

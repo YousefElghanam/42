@@ -4,9 +4,9 @@ void	init_set(t_set *set, size_t arg_count)
 {
 	set->capacity = arg_count;
 	set->cur_size = 0;
-	set->arr = malloc(sizeof(int) * (arg_count));
+	set->arr = ft_malloc(sizeof(int) * (arg_count));
 	if (!set->arr)
-		kill_everything(NULL, 2);
+		return_error(2);
 }
 
 int	in_set(t_set *set, int num)
