@@ -17,18 +17,14 @@ t_node	*new_node(int num)
 void	push_node(t_node *node, t_stack *stack)
 {
 	if (stack->size == 0)
-	{
 		stack->head = node;
-		stack->top = node;
-		stack->size = 1;
-	}
 	else
 	{
 		node->prev = stack->top;
 		stack->top->next = node;
-		stack->top = node;
-		stack->size += 1;
 	}
+	stack->top = node;
+	stack->size += 1;
 }
 
 void	fill_arr(int *arr, t_stack *stack)
@@ -38,7 +34,7 @@ void	fill_arr(int *arr, t_stack *stack)
 
 	i = 0;
 	node = stack->head;
-	while(i < stack->size)
+	while (i < stack->size)
 	{
 		arr[i++] = node->num;
 		node = node->next;

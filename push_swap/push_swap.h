@@ -1,10 +1,10 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <limits.h>
-#include "libft/libft.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
+# include "libft/libft.h"
 
 typedef struct s_set
 {
@@ -13,20 +13,20 @@ typedef struct s_set
 	int		*arr;
 }	t_set;
 
-typedef struct	s_node
+typedef struct s_node
 {
-    int				num;
-    size_t			position;
+	int				num;
+	size_t			position;
 	struct s_node	*next;
 	struct s_node	*prev;
-} t_node;
+}	t_node;
 
-typedef struct	s_stack
+typedef struct s_stack
 {
-    size_t	size;
+	size_t	size;
 	t_node	*head;
-    t_node	*top;
-} t_stack;
+	t_node	*top;
+}	t_stack;
 
 void	return_error(int state);
 void	validate_args(size_t argc, char **argv);
@@ -45,7 +45,19 @@ void	init_set(t_set *set, size_t arg_count);
 int		in_set(t_set *set, int num);
 void	add_to_set(t_set *set, int num);
 
-t_list	*ft_alloc_list(void);
+void	sa(t_stack *stack);
+void	sb(t_stack *stack);
+void	ss(t_stack *stack_a, t_stack *stack_b);
+void	pa(t_stack *stack_a, t_stack *stack_b);
+void	pb(t_stack *stack_a, t_stack *stack_b);
+void	ra(t_stack *stack);
+void	rb(t_stack *stack);
+void	rr(t_stack *stack_a, t_stack *stack_b);
+void	rra(t_stack *stack);
+void	rrb(t_stack *stack);
+void	rrr(t_stack *stack_a, t_stack *stack_b);
+
+t_list	**ft_alloc_list(void);
 void	*ft_malloc(size_t size);
 void	ft_delete(void *ptr);
 

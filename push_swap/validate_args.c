@@ -60,8 +60,7 @@ void	validate_args(size_t argc, char **argv)
 			return_error(1);
 		num = ft_atoi(argv[i]);
 		if (in_set(&set, num))
-			return_error(1);
+			return_error(4);
 		add_to_set(&set, num);
 	}
-	free(set.arr);
 }

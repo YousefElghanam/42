@@ -1,0 +1,9 @@
+operations use cases:
+
+swap: 
+
+push:
+
+rotate:
+
+r_rotate:

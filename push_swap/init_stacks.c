@@ -2,7 +2,7 @@
 
 t_stack	*init_stack_a(size_t n_count, char **argv)
 {
-    size_t	i;
+	size_t	i;
 	t_stack	*stack;
 	t_node	*node;
 

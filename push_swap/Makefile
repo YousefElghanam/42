@@ -6,7 +6,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 HEADER = push_swap.h
 
-SOURCES = main.c validate_args.c very_special_set.c ft_malloc.c init_stacks.c init_stacks_2.c utils.c
+SOURCES = main.c validate_args.c very_special_set.c ft_malloc.c init_stacks.c init_stacks_2.c \
+		utils.c operations.c operations_2.c operations_3.c operations_4.c
 
 BASE_SOURCES = $(filter-out %_bonus.c, $(SOURCES))
 

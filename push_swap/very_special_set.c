@@ -16,7 +16,7 @@ int	in_set(t_set *set, int num)
 	i = 0;
 	while (i < set->cur_size)
 		if ((set->arr)[i++] == num)
-			return(1);
+			return (1);
 	return (0);
 }
 
