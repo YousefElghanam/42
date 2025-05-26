@@ -5,7 +5,11 @@ void	rra(t_stack *stack)
 	t_node	*node;
 
 	if (stack->size == 0 || stack->size == 1)
+	{
+		ft_printf("rra (nothing)\n");
 		return ;
+	}
+	ft_printf("rra\n");
 	node = stack->head;
 	stack->head = node->next;
 	node->prev = NULL;
@@ -20,7 +24,11 @@ void	rrb(t_stack *stack)
 	t_node	*node;
 
 	if (stack->size == 0 || stack->size == 1)
+	{
+		ft_printf("rrb (nothing)\n");
 		return ;
+	}
+	ft_printf("rrb\n");
 	node = stack->head;
 	stack->head = node->next;
 	node->prev = NULL;

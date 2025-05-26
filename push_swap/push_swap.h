@@ -28,8 +28,8 @@ typedef struct s_stack
 	t_node	*top;
 }	t_stack;
 
-void	return_error(int state);
 void	validate_args(size_t argc, char **argv);
+void	solve(t_stack *stack_a, t_stack *stack_b, t_stack *sorted_stack);
 
 t_stack	*init_stack_a(size_t n_count, char **argv);
 t_stack	*init_stack_b(void);

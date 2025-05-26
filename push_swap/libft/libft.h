@@ -6,7 +6,7 @@
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:54:09 by josefelghna       #+#    #+#             */
-/*   Updated: 2025/05/22 16:00:56 by jel-ghna         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:18:12 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+char	*get_next_line(int fd);
 int		ft_printf(const char *format, ...);
 int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);

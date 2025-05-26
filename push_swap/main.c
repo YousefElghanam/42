@@ -1,5 +1,17 @@
 #include "push_swap.h"
 
+void	print_sorted(t_stack *stack)
+{
+	t_node *node = stack->head;
+	ft_printf("\nsorted :");
+	while (node)
+	{
+		ft_putnbr_fd(node->num, 1);
+		ft_printf(" ");
+		node = node->next;
+	}
+}
+
 void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*node;
@@ -9,7 +21,7 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 	while (node)
 	{
 		ft_putnbr_fd(node->num, 1);
-		ft_putstr_fd(" ", 1);
+		ft_printf(" ");
 		node = node->next;
 	}
 
@@ -18,10 +30,50 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 	while (node)
 	{
 		ft_putnbr_fd(node->num, 1);
-		ft_putstr_fd(" ", 1);
+		ft_printf(" ");
 		node = node->next;
 	}
-	ft_putstr_fd("\n", 1);
+	ft_printf("\n", 1);
+}
+
+void	input_operations(t_stack *stack_a, t_stack *stack_b)
+{
+	char	*input = NULL;
+	int flag = 1;
+	while (input || flag)
+	{
+		flag = 0;
+		input = get_next_line(0);
+		ft_printf("\n>>input: %s\n", input);
+		if (!input)
+			;
+		else if (!ft_strncmp(input, "sa\n", 3))
+			sa(stack_a);
+		else if (!ft_strncmp(input, "sb\n", 3))
+			sb(stack_b);
+		else if (!ft_strncmp(input, "ss\n", 3))
+			ss(stack_a, stack_b);
+		else if (!ft_strncmp(input, "pa\n", 3))
+			pa(stack_a, stack_b);
+		else if (!ft_strncmp(input, "pb\n", 3))
+			pb(stack_a, stack_b);
+		else if (!ft_strncmp(input, "ra\n", 3))
+			ra(stack_a);
+		else if (!ft_strncmp(input, "rb\n", 3))
+			rb(stack_b);
+		else if (!ft_strncmp(input, "rr\n", 3))
+			rr(stack_a, stack_b);
+		else if (!ft_strncmp(input, "rra\n", 4))
+			rra(stack_a);
+		else if (!ft_strncmp(input, "rrb\n", 4))
+			rrb(stack_b);
+		else if (!ft_strncmp(input, "rrr\n", 4))
+			rrr(stack_a, stack_b);
+		else
+			ft_printf("invalid operation\n");
+		print_stacks(stack_a, stack_b);
+		free(input);
+	}
 }
 
 int	main(int argc, char **argv)
@@ -29,7 +81,6 @@ int	main(int argc, char **argv)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 	t_stack	*stack_goal;
-	t_node	*node;
 
 	if (!ft_alloc_list() || argc < 2)
 		return_error(3);
@@ -38,35 +89,18 @@ int	main(int argc, char **argv)
 	stack_b = init_stack_b();
 	stack_goal = init_sorted_stack(stack_a);
 
-	ft_putstr_fd("\nsorted :", 1);
-	node = stack_goal->head;
-	while (node)
-	{
-		ft_putnbr_fd(node->num, 1);
-		ft_putstr_fd(" ", 1);
-		node = node->next;
-	}
+	// solve(stack_a, stack_b, stack_goal);
 
-	ft_putstr_fd("\n\n", 1);
-	print_stacks(stack_a, stack_b);
+	print_sorted(stack_goal);
 
-	ra(stack_a);
+	ft_printf("\n\n");
 	print_stacks(stack_a, stack_b);
-	ra(stack_a);
-	print_stacks(stack_a, stack_b);
+	ft_printf("\n");
 
-	// pa(stack_a, stack_b);
-	// print_stacks(stack_a, stack_b);
-	// pa(stack_a, stack_b);
-	// print_stacks(stack_a, stack_b);
-	// sb(stack_b);
-	// print_stacks(stack_a, stack_b);
-	// pb(stack_a, stack_b);
-	// print_stacks(stack_a, stack_b);
+	input_operations(stack_a, stack_b);
 
 	ft_lstclear(ft_alloc_list(), &ft_delete);
 	free(ft_alloc_list());
-	// solve(stack_a, stack_b, stack_goal);
 }
 
 // Make a "score" variable that has how many nodes are in their correct

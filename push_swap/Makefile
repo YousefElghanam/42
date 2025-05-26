@@ -4,10 +4,10 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-HEADER = push_swap.h
+HEADER = push_swap.h libft/libft.h
 
 SOURCES = main.c validate_args.c very_special_set.c ft_malloc.c init_stacks.c init_stacks_2.c \
-		utils.c operations.c operations_2.c operations_3.c operations_4.c
+		utils.c operations.c operations_2.c operations_3.c operations_4.c #algorithm.c
 
 BASE_SOURCES = $(filter-out %_bonus.c, $(SOURCES))
 
@@ -27,7 +27,7 @@ LIBFT_SOURCES =	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_is
 			ft_substr.c ft_tolower.c ft_toupper.c ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c \
 			ft_lstclear_bonus.c ft_lstdelone_bonus.c ft_lstiter_bonus.c ft_lstlast_bonus.c \
 			ft_lstmap_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c ft_printf.c ft_utils.c \
-			ft_write_types.c ft_write_types2.c
+			ft_write_types.c ft_write_types2.c get_next_line.c get_next_line_utils.c
 
 LIBFT_OBJECTS = $(addprefix libft/,$(LIBFT_SOURCES:.c=.o))
 
