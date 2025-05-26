@@ -5,10 +5,14 @@ void	ra(t_stack *stack)
 	t_node	*node;
 
 	if (stack->size == 0 || stack->size == 1)
+	{
+		ft_printf("ra (nothing)\n");
 		return ;
+	}
+	ft_printf("ra\n");
 	node = stack->top;
 	stack->top = node->prev;
-	node->next = NULL;
+	node->prev->next = NULL;
 	node->prev = NULL;
 	node->next = stack->head;
 	stack->head->prev = node;
@@ -20,10 +24,14 @@ void	rb(t_stack *stack)
 	t_node	*node;
 
 	if (stack->size == 0 || stack->size == 1)
+	{
+		ft_printf("\nrb (nothing)\n");
 		return ;
+	}
+	ft_printf("rb\n");
 	node = stack->top;
 	stack->top = node->prev;
-	node->next = NULL;
+	node->prev->next = NULL;
 	node->prev = NULL;
 	node->next = stack->head;
 	stack->head->prev = node;

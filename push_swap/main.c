@@ -1,15 +1,28 @@
 #include "push_swap.h"
 
-// static	void	swap_nodes(t_node *node_1, t_node *node_2)
-// {
-// 	t_node	*tmp;
+void	print_stacks(t_stack *stack_a, t_stack *stack_b)
+{
+	t_node	*node;
 
-// 	tmp = node_2->next;
-// 	node_2->prev = node_1->prev;
-// 	node_2->next = node_1;
-// 	node_1->prev = node_1;
-// 	node_1->next = tmp;
-// }
+	ft_printf("stack A (%d): ", stack_a->size);
+	node = stack_a->head;
+	while (node)
+	{
+		ft_putnbr_fd(node->num, 1);
+		ft_putstr_fd(" ", 1);
+		node = node->next;
+	}
+
+	ft_printf("\nstack B (%d): ", stack_b->size);
+	node = stack_b->head;
+	while (node)
+	{
+		ft_putnbr_fd(node->num, 1);
+		ft_putstr_fd(" ", 1);
+		node = node->next;
+	}
+	ft_putstr_fd("\n", 1);
+}
 
 int	main(int argc, char **argv)
 {
@@ -17,9 +30,7 @@ int	main(int argc, char **argv)
 	t_stack	*stack_b;
 	t_stack	*stack_goal;
 	t_node	*node;
-	size_t	i;
 
-	i = 0;
 	if (!ft_alloc_list() || argc < 2)
 		return_error(3);
 	validate_args((size_t)argc, argv);
@@ -27,33 +38,32 @@ int	main(int argc, char **argv)
 	stack_b = init_stack_b();
 	stack_goal = init_sorted_stack(stack_a);
 
+	ft_putstr_fd("\nsorted :", 1);
 	node = stack_goal->head;
-	ft_putstr_fd("sorted stack: ", 1);
-	while (i++ < stack_goal->size)
+	while (node)
 	{
 		ft_putnbr_fd(node->num, 1);
 		ft_putstr_fd(" ", 1);
 		node = node->next;
 	}
-	pa(stack_a, stack_b);
-	i = 0;
-	node = stack_a->head;
-	ft_putstr_fd("\nstack_a:      ", 1);
-	while (i++ < stack_a->size)
-	{
-		ft_putnbr_fd(node->num, 1);
-		ft_putstr_fd(" ", 1);
-		node = node->next;
-	}
-	i = 0;
-	node = stack_b->head;
-	ft_putstr_fd("\nstack_b:      ", 1);
-	while (i++ < stack_b->size)
-	{
-		ft_putnbr_fd(node->num, 1);
-		ft_putstr_fd(" ", 1);
-		node = node->next;
-	}
+
+	ft_putstr_fd("\n\n", 1);
+	print_stacks(stack_a, stack_b);
+
+	ra(stack_a);
+	print_stacks(stack_a, stack_b);
+	ra(stack_a);
+	print_stacks(stack_a, stack_b);
+
+	// pa(stack_a, stack_b);
+	// print_stacks(stack_a, stack_b);
+	// pa(stack_a, stack_b);
+	// print_stacks(stack_a, stack_b);
+	// sb(stack_b);
+	// print_stacks(stack_a, stack_b);
+	// pb(stack_a, stack_b);
+	// print_stacks(stack_a, stack_b);
+
 	ft_lstclear(ft_alloc_list(), &ft_delete);
 	free(ft_alloc_list());
 	// solve(stack_a, stack_b, stack_goal);

@@ -30,8 +30,8 @@ void	push(t_node *node, t_stack *stack)
 		stack->top->next = node;
 		node->prev = stack->top;
 		stack->top = node;
-		stack->size += 1;
 	}
+	stack->size += 1;
 }
 
 void	pa(t_stack *stack_a, t_stack *stack_b)
@@ -39,17 +39,26 @@ void	pa(t_stack *stack_a, t_stack *stack_b)
 	t_node	*node;
 
 	if (stack_a->size == 0)
+	{
+		ft_printf("\npa (nothing)\n");
 		return ;
+	}
+	ft_printf("\npa\n");
 	node = pop(stack_a);
 	push(node, stack_b);
 }
+
 
 void	pb(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*node;
 	
 	if (stack_b->size == 0)
+	{
+		ft_printf("\npb (nothing)\n");
 		return ;
+	}
+	ft_printf("\npb\n");
 	node = pop(stack_b);
 	push(node, stack_a);
 }
