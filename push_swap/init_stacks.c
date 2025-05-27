@@ -6,17 +6,18 @@ t_stack	*init_stack_a(size_t n_count, char **argv)
 	t_stack	*stack;
 	t_node	*node;
 
-	i = 1;
+	i = 0;
 	stack = ft_malloc(sizeof(t_stack));
 	if (!stack)
 		return_error(2);
 	stack->head = NULL;
 	stack->top = NULL;
 	stack->size = 0;
-	while (i <= n_count)
+	while (i < n_count)
 	{
-		node = new_node(ft_atoi(argv[i++]));
+		node = new_node(ft_atoi(argv[n_count - i]));
 		push_node(node, stack);
+		i++;
 	}
 	return (stack);
 }

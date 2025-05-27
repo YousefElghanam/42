@@ -77,7 +77,7 @@ t_stack	*arr_to_stack(int *arr, size_t size)
 	stack->top = NULL;
 	stack->size = 0;
 	i = 0;
-	while (i < size)
-		push_node(new_node(arr[i++]), stack);
+	while (i++ < size)
+		push_node(new_node(arr[size - i]), stack);
 	return (stack);
 }

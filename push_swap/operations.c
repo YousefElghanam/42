@@ -50,6 +50,7 @@ void	sb(t_stack *stack)
 
 void	ss(t_stack *stack_a, t_stack *stack_b)
 {
+	ft_printf("\nss\n");
 	sa(stack_a);
 	sb(stack_b);
 }

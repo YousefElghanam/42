@@ -40,6 +40,7 @@ void	rb(t_stack *stack)
 
 void	rr(t_stack *stack_a, t_stack *stack_b)
 {
+	ft_printf("rr\n");
 	ra(stack_a);
 	rb(stack_b);
 }
