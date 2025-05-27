@@ -60,13 +60,14 @@ void	solve(t_stack *stack_a, t_stack *stack_b, t_stack *sorted_stack)
 			}
 			pa(stack_a, stack_b);
 		}
+		if ()
 	}
 }
 
-// how much is sorted (longest sorted seq / num of total nodes)
-// < 30% :
+// // how much is sorted (longest sorted seq / num of total nodes)
+// // < 30% :
 
-main algo:
-1. check of top 2 of A
-	if sorted:		move longest sorted seq to its pos (first node to first place if longest seq is less than 20-30% of all elmnts)
-	if not sorted:	push them to B, then check if need swapping (ss too)
+// main algo:
+// 1. check of top 2 of A
+// 	if sorted:		move longest sorted seq to its pos (first node to first place if longest seq is less than 20-30% of all elmnts)
+// 	if not sorted:	push them to B, then check if need swapping (ss too)
