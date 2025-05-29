@@ -1,16 +1,17 @@
 #include "push_swap.h"
 
-void	sa(t_stack *stack)
+void	sa(t_stack *stack, int print)
 {
 	t_node	*top;
 	t_node	*prev;
 
 	if (stack->size < 2)
 	{
-		ft_printf("\nsa (nothing)\n");
+		ft_printf("\nsa (nothing)");
 		return ;
 	}
-	ft_printf("\nsa\n");
+	if (print)
+		ft_printf("\nsa");
 	top = stack->top;
 	prev = top->prev;
 	if (prev->prev)
@@ -24,17 +25,18 @@ void	sa(t_stack *stack)
 		stack->head = top;
 }
 
-void	sb(t_stack *stack)
+void	sb(t_stack *stack, int print)
 {
 	t_node	*top;
 	t_node	*prev;
 
 	if (stack->size < 2)
 	{
-		ft_printf("\nsb (nothing)\n");
+		ft_printf("\nsb (nothing)");
 		return ;
 	}
-	ft_printf("\nsb\n");
+	if (print)
+		ft_printf("\nsb");
 	top = stack->top;
 	prev = top->prev;
 	if (prev->prev)
@@ -50,7 +52,7 @@ void	sb(t_stack *stack)
 
 void	ss(t_stack *stack_a, t_stack *stack_b)
 {
-	ft_printf("\nss\n");
-	sa(stack_a);
-	sb(stack_b);
+	ft_printf("\nss");
+	sa(stack_a, 0);
+	sb(stack_b, 0);
 }

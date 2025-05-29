@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-t_node	*new_node(int num)
+t_node	*new_node(int num, size_t pos)
 {
 	t_node	*node;
 
@@ -8,7 +8,7 @@ t_node	*new_node(int num)
 	if (!node)
 		return_error(2);
 	node->num = num;
-	node->position = 0;
+	node->position = pos;
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);
@@ -78,6 +78,6 @@ t_stack	*arr_to_stack(int *arr, size_t size)
 	stack->size = 0;
 	i = 0;
 	while (i++ < size)
-		push_node(new_node(arr[size - i]), stack);
+		push_node(new_node(arr[size - i], size - i + 1), stack);
 	return (stack);
 }

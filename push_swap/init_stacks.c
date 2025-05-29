@@ -15,7 +15,7 @@ t_stack	*init_stack_a(size_t n_count, char **argv)
 	stack->size = 0;
 	while (i < n_count)
 	{
-		node = new_node(ft_atoi(argv[n_count - i]));
+		node = new_node(ft_atoi(argv[n_count - i]), 0);
 		push_node(node, stack);
 		i++;
 	}

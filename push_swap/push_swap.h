@@ -29,13 +29,16 @@ typedef struct s_stack
 }	t_stack;
 
 void	validate_args(size_t argc, char **argv);
+
 void	solve(t_stack *stack_a, t_stack *stack_b, t_stack *sorted_stack);
+void	shake_sort_rr(t_stack *stack_a, t_stack *stack_b, size_t count);
+void	shake_sort_rrr(t_stack *stack_a, t_stack *stack_b, size_t count);
 
 t_stack	*init_stack_a(size_t n_count, char **argv);
 t_stack	*init_stack_b(void);
 t_stack	*init_sorted_stack(t_stack *stack);
 
-t_node	*new_node(int num);
+t_node	*new_node(int num, size_t pos);
 void	push_node(t_node *node, t_stack *stack);
 void	fill_arr(int *arr, t_stack *stack);
 void	sort_arr(int *arr, size_t size);
@@ -45,16 +48,16 @@ void	init_set(t_set *set, size_t arg_count);
 int		in_set(t_set *set, int num);
 void	add_to_set(t_set *set, int num);
 
-void	sa(t_stack *stack);
-void	sb(t_stack *stack);
+void	sa(t_stack *stack, int print);
+void	sb(t_stack *stack, int print);
 void	ss(t_stack *stack_a, t_stack *stack_b);
 void	pa(t_stack *stack_a, t_stack *stack_b);
 void	pb(t_stack *stack_a, t_stack *stack_b);
-void	ra(t_stack *stack);
-void	rb(t_stack *stack);
+void	ra(t_stack *stack, int print);
+void	rb(t_stack *stack, int print);
 void	rr(t_stack *stack_a, t_stack *stack_b);
-void	rra(t_stack *stack);
-void	rrb(t_stack *stack);
+void	rra(t_stack *stack, int print);
+void	rrb(t_stack *stack, int print);
 void	rrr(t_stack *stack_a, t_stack *stack_b);
 
 t_list	**ft_alloc_list(void);

@@ -3,11 +3,19 @@
 void	print_sorted(t_stack *stack)
 {
 	t_node *node = stack->head;
-	ft_printf("\nsorted :");
+	ft_printf("\nsorted	:	");
 	while (node)
 	{
 		ft_putnbr_fd(node->num, 1);
-		ft_printf(" ");
+		ft_printf("	");
+		node = node->next;
+	}
+	ft_printf("\npositions:	");
+	node = stack->head;
+	while (node)
+	{
+		ft_putnbr_fd(node->position, 1);
+		ft_printf("	");
 		node = node->next;
 	}
 }
@@ -16,21 +24,21 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*node;
 
-	ft_printf("stack A (%d): ", stack_a->size);
+	ft_printf("\bstack A (%d):	", stack_a->size);
 	node = stack_a->head;
 	while (node)
 	{
 		ft_putnbr_fd(node->num, 1);
-		ft_printf(" ");
+		ft_printf("	");
 		node = node->next;
 	}
 
-	ft_printf("\nstack B (%d): ", stack_b->size);
+	ft_printf("\nstack B (%d):	", stack_b->size);
 	node = stack_b->head;
 	while (node)
 	{
 		ft_putnbr_fd(node->num, 1);
-		ft_printf(" ");
+		ft_printf("	");
 		node = node->next;
 	}
 	ft_printf("\n", 1);
@@ -48,9 +56,9 @@ void	input_operations(t_stack *stack_a, t_stack *stack_b)
 		if (!input)
 			;
 		else if (!ft_strncmp(input, "sa\n", 3))
-			sa(stack_a);
+			sa(stack_a, 1);
 		else if (!ft_strncmp(input, "sb\n", 3))
-			sb(stack_b);
+			sb(stack_b, 1);
 		else if (!ft_strncmp(input, "ss\n", 3))
 			ss(stack_a, stack_b);
 		else if (!ft_strncmp(input, "pa\n", 3))
@@ -58,15 +66,15 @@ void	input_operations(t_stack *stack_a, t_stack *stack_b)
 		else if (!ft_strncmp(input, "pb\n", 3))
 			pb(stack_a, stack_b);
 		else if (!ft_strncmp(input, "ra\n", 3))
-			ra(stack_a);
+			ra(stack_a, 1);
 		else if (!ft_strncmp(input, "rb\n", 3))
-			rb(stack_b);
+			rb(stack_b, 1);
 		else if (!ft_strncmp(input, "rr\n", 3))
 			rr(stack_a, stack_b);
 		else if (!ft_strncmp(input, "rra\n", 4))
-			rra(stack_a);
+			rra(stack_a, 1);
 		else if (!ft_strncmp(input, "rrb\n", 4))
-			rrb(stack_b);
+			rrb(stack_b, 1);
 		else if (!ft_strncmp(input, "rrr\n", 4))
 			rrr(stack_a, stack_b);
 		else
@@ -89,15 +97,15 @@ int	main(int argc, char **argv)
 	stack_b = init_stack_b();
 	stack_goal = init_sorted_stack(stack_a);
 
-	// solve(stack_a, stack_b, stack_goal);
-
 	print_sorted(stack_goal);
+
+	solve(stack_a, stack_b, stack_goal);
 
 	ft_printf("\n\n");
 	print_stacks(stack_a, stack_b);
 	ft_printf("\n");
 
-	input_operations(stack_a, stack_b);
+	// input_operations(stack_a, stack_b);
 
 	ft_lstclear(ft_alloc_list(), &ft_delete);
 	free(ft_alloc_list());

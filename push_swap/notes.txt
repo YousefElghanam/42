@@ -1,9 +1,6 @@
 operations use cases:
 
-swap: 
+1.	make a function that checks if after initial splitting you actually
+	need to rrr (check future rrr's pairs if they actually need sorting)
 
-push:
-
-rotate:
-
-r_rotate:
+2.	same as 1. but for shake sort. possible ??
