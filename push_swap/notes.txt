@@ -4,3 +4,15 @@ operations use cases:
 	need to rrr (check future rrr's pairs if they actually need sorting)
 
 2.	same as 1. but for shake sort. possible ??
+
+ALGORITHM #2:
+1. keep exctracting lower half of stack A and push them to B untill you have ~2 nums in A
+2. swap both stacks if needed and push 2 by 2.
+3. if B has 4+ unsorted nums extract higher half from it to A and do the opposite
+
+
+new:
+	1. make a function to create a sorted stack, starting from a node of another
+		stack untill the end
+	2. this mew sorted stack will help us define the top and bot halfs of the stack.
+	3. t_stack	mk_sorted_stack(t_node *starting_node);

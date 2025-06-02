@@ -97,15 +97,15 @@ int	main(int argc, char **argv)
 	stack_b = init_stack_b();
 	stack_goal = init_sorted_stack(stack_a);
 
-	// print_sorted(stack_goal);
+	print_sorted(stack_goal);
 
-	solve(stack_a, stack_b, stack_goal);
+	// solve(stack_a, stack_b, stack_goal);
 
 	ft_printf("\n\n");
 	print_stacks(stack_a, stack_b);
 	ft_printf("\n");
 
-	// input_operations(stack_a, stack_b);
+	input_operations(stack_a, stack_b);
 
 	ft_lstclear(ft_alloc_list(), &ft_delete);
 	free(ft_alloc_list());

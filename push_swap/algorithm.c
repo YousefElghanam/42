@@ -1,149 +1,307 @@
 #include "push_swap.h"
 
-// void	percentage_correctness_checker(t_stack *stack);
-
-// void	longest_sorted_seq(t_stack *stack_a, t_stack *stack_b)
-// {
-// 	;
-// }
-
-int	is_sorted(t_stack *stack_a, t_stack *sorted_stack)
+size_t	len_from_here(t_node *starting_node)
 {
-	t_node	*node;
-	t_node	*sorted_node;
-	size_t	i;
-	
-	i = 0;
-	node = stack_a->head;
-	sorted_node = sorted_stack->head;
-	while (node->num != sorted_node->num)
-		node = node->next;
-	while (i++ < sorted_stack->size)
-	{
-		if (node->num != sorted_node->num)
-			return (0);
-		if (node->next)
-			node = node->next;
-		else
-			node = stack_a->head;
-		sorted_node = sorted_node->next;
-	}
-	return (1);
-}
-
-void	split_stack(t_stack *stack_a, t_stack *stack_b, t_stack *sorted_stack)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < sorted_stack->size / 2)
-	{
-		pb(stack_a, stack_b);
-		i++;
-	}
-}
-
-void	sort_pairs(t_stack *stack_a, t_stack *stack_b, size_t count)
-{
-	size_t	i;
-	
-	i = 0;
-	while (i++ < count)
-	{
-		if (stack_a->top->num > stack_a->top->prev->num &&
-			stack_b->top->num < stack_b->top->prev->num)
-				ss(stack_a, stack_b);
-		else if (stack_a->top->num > stack_a->top->prev->num)
-			sa(stack_a, 1);
-		else if (stack_b->top->num < stack_b->top->prev->num)
-			sb(stack_b, 1);
-		if (i < count)
-		{
-			rrr(stack_a, stack_b);
-			rrr(stack_a, stack_b);
-		}
-	}
-}
-
-void	shake_sort_rr(t_stack *stack_a, t_stack *stack_b, size_t count)
-{
-	size_t	i;
-
-	i = 0;
-	if (count == 2)
-		return ;
-	while (i++ < count - 1)
-	{
-		rr(stack_a, stack_b);
-		if (stack_a->top->num > stack_a->top->prev->num
-			&& stack_b->top->num < stack_b->top->prev->num)
-				ss(stack_a, stack_b);
-		else if (stack_b->top->num < stack_b->top->prev->num)
-			sb(stack_b, 1);
-		else if (stack_a->top->num > stack_a->top->prev->num)
-			sa(stack_a, 1);
-	}
-	shake_sort_rrr(stack_a, stack_b, count - 1);
-}
-
-void	shake_sort_rrr(t_stack *stack_a, t_stack *stack_b, size_t count)
-{
-	size_t	i;
-
-	i = 0;
-	if (count == 2)
-		return ;
-	while (i++ < count - 1)
-	{
-		rrr(stack_a, stack_b);
-		if (stack_a->top->num > stack_a->top->prev->num
-			&& stack_b->top->num < stack_b->top->prev->num)
-				ss(stack_a, stack_b);
-		else if (stack_b->top->num < stack_b->top->prev->num)
-			sb(stack_b, 1);
-		else if (stack_a->top->num > stack_a->top->prev->num)
-			sa(stack_a, 1);
-	}
-	shake_sort_rr(stack_a, stack_b, count);
-}
-
-int	whats_next(int num, t_stack *sorted_stack)
-{
+	size_t	len;
 	t_node	*node;
 
-	node = sorted_stack->head;
+	len = 0;
+	node = starting_node;
 	while (node)
 	{
-		if (node->num == num)
-		{
-			if (node->next)
-				return (node->next->num);
-			return (sorted_stack->head->num);
-		}
+		len++;
+		node = node->next;
+	}
+	return (len);
+}
+
+t_stack	*mk_sorted_stack(t_node *starting_node)
+{
+	t_node	*node;
+	size_t	i;
+	int		*arr;
+	size_t	len;
+
+	node = starting_node;
+	i = 0;
+	len = len_from_here(starting_node);
+	arr = ft_malloc(sizeof(int) * len);
+	if (!arr)
+		return_error(2);
+	while (i < len)
+	{
+		arr[i] = node->num;
+		node = node->next;
+		i++;
+	}
+	sort_arr(arr, len);
+	return (arr_to_stack(arr, len));
+}
+
+int	is_top_half(t_node *starting_node, t_node *target_node)
+{
+	size_t	mid_len;
+	t_node	*node;
+
+	mid_len = len_from_here(starting_node);
+	mid_len = (mid_len % 2 != 0) + (mid_len / 2);
+	node = starting_node;
+	while (mid_len--)
+	{
+		if (target_node->num == node->num)
+			return (1);
 		node = node->next;
 	}
 	return (0);
 }
 
-void	inject_into_a(t_stack *stack_a, t_stack *stack_b, t_stack *sorted_stack)
+void	split_a(t_stack *stack_a, t_stack *stack_b, t_node *starting_node)
 {
-	rr(stack_a, stack_b);
-	rb(stack_b, 1);
-	while (stack_b->size)
+	size_t	len;
+	size_t	i;
+	t_stack	*sorted;
+	int		reverse;
+
+	reverse = 0;
+	len = len_from_here(starting_node);
+	i = 0;
+	sorted = mk_sorted_stack(starting_node);
+	if (len != stack_a->size)
+		reverse = 1;
+	while (i++ < len) // can make it stop doing "ra" if no more left (but still keep track of how many "ra" we did if we need to "rra" back)
 	{
-		while (stack_b->top && stack_b->top->num == whats_next(stack_a->top->num, sorted_stack))
-			pa(stack_a, stack_b);
-		rb(stack_b, 1);
+		if (!is_top_half(sorted->head ,stack_a->top))
+			pb(stack_a, stack_b);
+		else
+			ra(stack_a, 1);
+	}
+	if (reverse) // if stopped prev while loop before checking all, make sure you dont do more "rra" than necessary (change len)
+	{
+		len = (len % 2 != 0) + (len / 2);
+		while (len--)
+			rra(stack_a, 1);
 	}
 }
 
 void	solve(t_stack *stack_a, t_stack *stack_b, t_stack *sorted_stack)
 {
-	split_stack(stack_a, stack_b, sorted_stack);
-	sort_pairs(stack_a, stack_b, stack_a->size / 2);
-	shake_sort_rr(stack_a, stack_b, sorted_stack->size / 2);
-	inject_into_a(stack_a, stack_b, sorted_stack);
+	// t_node	*node;
+	t_node	*head;
+
+	// node = stack_a->top;
+	head = stack_a->head;
+	while (len_from_here(stack_a->head) > 3)
+		split_a(stack_a, stack_b, head);
+	// sort_together(stack_a, stack_b, sorted_stack);
+	// while (stack_b->size)
+	// {
+	// 	split_b_sort(stack_a, stack_b, sorted_stack);
+	// }
+	ft_printf("\n>>%d<<\n", sorted_stack->size);
 }
+
+//// SOLUTION 2:
+
+// int	is_sorted(t_stack *stack_a, t_stack *sorted_stack)
+// {
+// 	t_node	*node;
+// 	t_node	*sorted_node;
+// 	size_t	i;
+	
+// 	i = 0;
+// 	node = stack_a->head;
+// 	sorted_node = sorted_stack->head;
+// 	while (node->num != sorted_node->num)
+// 		node = node->next;
+// 	while (i++ < sorted_stack->size)
+// 	{
+// 		if (node->num != sorted_node->num)
+// 			return (0);
+// 		if (node->next)
+// 			node = node->next;
+// 		else
+// 			node = stack_a->head;
+// 		sorted_node = sorted_node->next;
+// 	}
+// 	return (1);
+// }
+
+// void	split_stack(t_stack *stack_a, t_stack *stack_b, t_stack *sorted_stack)
+// {
+// 	size_t	i;
+
+// 	i = 0;
+// 	while (i < sorted_stack->size / 2)
+// 	{
+// 		pb(stack_a, stack_b);
+// 		i++;
+// 	}
+// }
+
+// void	sort_pairs(t_stack *stack_a, t_stack *stack_b, size_t count)
+// {
+// 	size_t	i;
+	
+// 	i = 0;
+// 	while (i++ < count)
+// 	{
+// 		if (stack_a->top->num > stack_a->top->prev->num &&
+// 			stack_b->top->num < stack_b->top->prev->num)
+// 				ss(stack_a, stack_b);
+// 		else if (stack_a->top->num > stack_a->top->prev->num)
+// 			sa(stack_a, 1);
+// 		else if (stack_b->top->num < stack_b->top->prev->num)
+// 			sb(stack_b, 1);
+// 		if (i < count)
+// 		{
+// 			rrr(stack_a, stack_b);
+// 			rrr(stack_a, stack_b);
+// 		}
+// 	}
+// }
+
+// void	shake_sort_rr(t_stack *stack_a, t_stack *stack_b, size_t count)
+// {
+// 	size_t	i;
+
+// 	i = 0;
+// 	if (count == 2)
+// 		return ;
+// 	while (i++ < count - 1)
+// 	{
+// 		rr(stack_a, stack_b);
+// 		if (stack_a->top->num > stack_a->top->prev->num
+// 			&& stack_b->top->num < stack_b->top->prev->num)
+// 				ss(stack_a, stack_b);
+// 		else if (stack_b->top->num < stack_b->top->prev->num)
+// 			sb(stack_b, 1);
+// 		else if (stack_a->top->num > stack_a->top->prev->num)
+// 			sa(stack_a, 1);
+// 	}
+// 	shake_sort_rrr(stack_a, stack_b, count - 1);
+// }
+
+// void	shake_sort_rrr(t_stack *stack_a, t_stack *stack_b, size_t count)
+// {
+// 	size_t	i;
+
+// 	i = 0;
+// 	if (count == 2)
+// 		return ;
+// 	while (i++ < count - 1)
+// 	{
+// 		rrr(stack_a, stack_b);
+// 		if (stack_a->top->num > stack_a->top->prev->num
+// 			&& stack_b->top->num < stack_b->top->prev->num)
+// 				ss(stack_a, stack_b);
+// 		else if (stack_b->top->num < stack_b->top->prev->num)
+// 			sb(stack_b, 1);
+// 		else if (stack_a->top->num > stack_a->top->prev->num)
+// 			sa(stack_a, 1);
+// 	}
+// 	shake_sort_rr(stack_a, stack_b, count);
+// }
+
+// int	is_in_b(t_node *node, t_stack *stack_b)
+// {
+// 	t_node	*b_node;
+
+// 	b_node = stack_b->head;
+// 	while (b_node)
+// 	{
+// 		if (node->num == b_node->num)
+// 			return (1);
+// 		b_node = b_node->next;
+// 	}
+// 	return (0);
+// }
+
+// int	is_in_a(t_node *node, t_stack *stack_a)
+// {
+// 	t_node	*a_node;
+
+// 	a_node = stack_a->head;
+// 	while (a_node)
+// 	{
+// 		if (node->num == a_node->num)
+// 			return (1);
+// 		a_node = a_node->next;
+// 	}
+// 	return (0);
+// }
+
+// int	is_next_in_b(t_stack *stack_a, t_stack *stack_b, t_stack *sorted_stack)
+// {
+// 	t_node	*node;
+
+// 	node = sorted_stack->head;
+// 	while (node)
+// 	{
+// 		if (node->num == stack_a->top->num)
+// 			break ;
+// 		node = node->next;
+// 	}
+// 	if (node->next)
+// 	{
+// 		if (is_in_b(node->next, stack_b))
+// 			return (node->next->num);
+// 	}
+// 	else if (is_in_b(sorted_stack->head, stack_b))
+// 		return (sorted_stack->head->num);
+// 	return (0);
+// }
+
+// int	is_next_in_a(t_stack *stack_a, t_stack *sorted_stack)
+// {
+// 	t_node	*node;
+
+// 	node = sorted_stack->head;
+// 	while (node)
+// 	{
+// 		if (node->num == stack_a->top->num)
+// 			break ;
+// 		node = node->next;
+// 	}
+// 	if (node->next)
+// 	{
+// 		if (is_in_a(node->next, stack_a))
+// 			return (1);
+// 	}
+// 	else if (is_in_a(sorted_stack->head, stack_a))
+// 		return (1);
+// 	return (0);
+// }
+
+// void	inject_into_a(t_stack *stack_a, t_stack *stack_b, t_stack *sorted_stack)
+// {
+// 	int	next;
+
+// 	rr(stack_a, stack_b);
+// 	rb(stack_b, 1);
+// 	while (stack_b->size)
+// 	{
+// 		next = is_next_in_b(stack_a, stack_b, sorted_stack);
+// 		while (next)
+// 		{
+// 			while (stack_b->top->num != next)
+// 				rb(stack_b, 1);
+// 			pa(stack_a, stack_b);
+// 			next = is_next_in_b(stack_a, stack_b, sorted_stack);
+// 		}
+// 		if (is_next_in_a(stack_a, sorted_stack))
+// 			rra(stack_a, 1);
+// 	}
+// }
+
+// void	solve(t_stack *stack_a, t_stack *stack_b, t_stack *sorted_stack)
+// {
+// 	split_stack(stack_a, stack_b, sorted_stack);
+// 	sort_pairs(stack_a, stack_b, stack_a->size / 2);
+// 	ft_printf("here\n");
+// 	shake_sort_rr(stack_a, stack_b, sorted_stack->size / 2);
+// 	ft_printf("here\n");
+// 	inject_into_a(stack_a, stack_b, sorted_stack);
+// }
 
 // void	solve(t_stack *stack_a, t_stack *stack_b, t_stack *sorted_stack)
 // {

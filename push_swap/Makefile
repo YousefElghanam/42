@@ -1,5 +1,7 @@
 NAME = push_swap
 
+MAN_NAME = mpush_swap
+
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
@@ -8,6 +10,8 @@ HEADER = push_swap.h libft/libft.h
 
 SOURCES = main.c validate_args.c very_special_set.c ft_malloc.c init_stacks.c init_stacks_2.c \
 		utils.c operations.c operations_2.c operations_3.c operations_4.c algorithm.c
+
+MANUAL_SOURCES = $(filter-out main.c, $(SOURCES)) manual_main.c
 
 BASE_SOURCES = $(filter-out %_bonus.c, $(SOURCES))
 
@@ -49,5 +53,10 @@ fclean: clean
 	make fclean -C libft
 
 re: fclean all
+
+$(MAN_NAME): $(LIBFT) $(MANUAL_SOURCES) $(HEADER)
+	$(CC) $(CFLAGS) $(MANUAL_SOURCES) $(LIBFT) -o $(MAN_NAME)
+
+man: $(MAN_NAME)
 
 .PHONY: all clean fclean re bonus
