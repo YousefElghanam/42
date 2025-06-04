@@ -1,5 +1,6 @@
 #include "push_swap.h"
 
+
 size_t	len_from_here(t_node *starting_node)
 {
 	size_t	len;
@@ -17,14 +18,14 @@ size_t	len_from_here(t_node *starting_node)
 
 t_stack	*mk_sorted_stack(t_node *starting_node)
 {
-	t_node	*node;
 	size_t	i;
-	int		*arr;
 	size_t	len;
+	t_node	*node;
+	int		*arr;
 
-	node = starting_node;
 	i = 0;
 	len = len_from_here(starting_node);
+	node = starting_node;
 	arr = ft_malloc(sizeof(int) * len);
 	if (!arr)
 		return_error(2);
@@ -57,17 +58,17 @@ int	is_top_half(t_node *starting_node, t_node *target_node)
 
 void	split_a(t_stack *stack_a, t_stack *stack_b, t_node *starting_node)
 {
-	size_t	len;
 	size_t	i;
+	size_t	len;
 	t_stack	*sorted;
-	int		reverse;
+	// int		reverse;
 
-	reverse = 0;
-	len = len_from_here(starting_node);
+	// reverse = 0;
 	i = 0;
+	len = len_from_here(starting_node);
 	sorted = mk_sorted_stack(starting_node);
-	if (len != stack_a->size)
-		reverse = 1;
+	// if (len != stack_a->size)
+	// 	reverse = 1;
 	while (i++ < len) // can make it stop doing "ra" if no more left (but still keep track of how many "ra" we did if we need to "rra" back)
 	{
 		if (!is_top_half(sorted->head ,stack_a->top))
@@ -75,29 +76,36 @@ void	split_a(t_stack *stack_a, t_stack *stack_b, t_node *starting_node)
 		else
 			ra(stack_a, 1);
 	}
-	if (reverse) // if stopped prev while loop before checking all, make sure you dont do more "rra" than necessary (change len)
-	{
-		len = (len % 2 != 0) + (len / 2);
-		while (len--)
-			rra(stack_a, 1);
-	}
+	// if (reverse) // if stopped prev while loop before checking all, make sure you dont do more "rra" than necessary (change len)
+	// {
+	// 	len = (len % 2 != 0) + (len / 2);
+	// 	while (len--)
+	// 		rra(stack_a, 1);
+	// }
 }
 
-void	solve(t_stack *stack_a, t_stack *stack_b, t_stack *sorted_stack)
+// void	sort_together(t_stack *stack_a, t_stack *stack_b, t_stack *stack_s)
+// {
+// 	;
+// }
+
+void	solve(t_stack *stack_a, t_stack *stack_b, t_stack *stack_s)
 {
 	// t_node	*node;
-	t_node	*head;
+	// t_node	*head;
 
 	// node = stack_a->top;
-	head = stack_a->head;
+	// head = stack_a->head;
+	ft_printf("%d", stack_s->head->num);
 	while (len_from_here(stack_a->head) > 3)
-		split_a(stack_a, stack_b, head);
-	// sort_together(stack_a, stack_b, sorted_stack);
+	{
+		split_a(stack_a, stack_b, stack_a->head);
+	}
+	// sort_together(stack_a, stack_b, stack_s);
 	// while (stack_b->size)
 	// {
 	// 	split_b_sort(stack_a, stack_b, sorted_stack);
 	// }
-	ft_printf("\n>>%d<<\n", sorted_stack->size);
 }
 
 //// SOLUTION 2:
