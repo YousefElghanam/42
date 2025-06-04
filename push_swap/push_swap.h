@@ -64,6 +64,6 @@ t_list	**ft_alloc_list(void);
 void	*ft_malloc(size_t size);
 void	ft_delete(void *ptr);
 
-void	return_error(int state);
+void	return_error(int state, ...);
 
 #endif

@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	return_error(int state)
+void	return_error(int state, ...)
 {
 	t_list	**list;
 

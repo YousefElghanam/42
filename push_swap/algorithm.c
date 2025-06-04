@@ -1,6 +1,5 @@
 #include "push_swap.h"
 
-
 size_t	len_from_here(t_node *starting_node)
 {
 	size_t	len;
@@ -84,28 +83,89 @@ void	split_a(t_stack *stack_a, t_stack *stack_b, t_node *starting_node)
 	// }
 }
 
-// void	sort_together(t_stack *stack_a, t_stack *stack_b, t_stack *stack_s)
-// {
-// 	;
-// }
+
+
+size_t	unsorted_in_a(t_stack *stack_a, t_stack *stack_s)
+{
+	t_node	*node_a;
+	t_node	*node_s;
+	size_t	i;
+
+	node_a = stack_a->head;
+	node_s = stack_s->head;
+	i = 0;
+	while (node_a)
+	{
+		if (node_a->num != node_s->num)
+			i++;
+		node_a = node_a->next;
+		node_s = node_s->next;
+	}
+	return (i);
+}
+
+void	sort_and_pa(t_stack *stack_a, t_stack *stack_b, t_stack *stack_s, size_t b_top)
+{
+	size_t	a_top;
+
+	a_top = unsorted_in_a(stack_a, stack_s);
+	if (a_top == 3 && b_top == 3)
+	{
+		sort_tops(stack_a, stack_b);
+	}
+	else if (a_top == 3 && b_top == 2)
+	{
+		;
+	}
+	else if (a_top == 2 && b_top == 2)
+	{
+		;
+	}
+}
 
 void	solve(t_stack *stack_a, t_stack *stack_b, t_stack *stack_s)
 {
-	// t_node	*node;
-	// t_node	*head;
+	t_list	**seq_list;
+	t_list	*seq_node;
+	size_t	*len;
+	t_node	*a_top;
 
-	// node = stack_a->top;
-	// head = stack_a->head;
-	ft_printf("%d", stack_s->head->num);
+	if (stack_s)
 	while (len_from_here(stack_a->head) > 3)
 	{
 		split_a(stack_a, stack_b, stack_a->head);
+		len = malloc(sizeof(size_t));
+		*len = len_from_here(stack_a->head) / 2;
+		seq_node = ft_lstnew(len);
+		if (!seq_node)
+			return_error(2, ft_lstclear(seq_list, &ft_delete));
+		ft_lstadd_back(seq_list, seq_node);
 	}
-	// sort_together(stack_a, stack_b, stack_s);
-	// while (stack_b->size)
-	// {
-	// 	split_b_sort(stack_a, stack_b, sorted_stack);
-	// }
+	// PREV WHILE LOOP REPLACEMENT ||
+	//							   VV
+	// init_split_a(stack_a, stack_b, stack_a->head);
+	sort_and_pa(stack_a, stack_b, stack_s, *ft_lstlast(seq_list)->content);
+	ft_lstdelone(ft_lstlast(seq_list), &ft_delete);
+	while (stack_b->size)
+	{
+		a_top = stack_a->top;
+		split_b(stack_a, stack_b, sorted_stack, seq_list); // there is a case where i could split 3 numbers only !! need to handle it most efficiently
+		/////
+		while (len_from_here(a_top->next) > 3)
+		{
+			split_a(stack_a, stack_b, a_top->next);
+			len = malloc(sizeof(size_t));
+			*len = len_from_here(stack_a->head) / 2;
+			seq_node = ft_lstnew(len);
+			if (!seq_node)
+				return_error(2, ft_lstclear(seq_list, &ft_delete));
+			ft_lstadd_back(seq_list, seq_node);
+		}
+		/////
+		sort_and_pa(stack_a, stack_b, stack_s);
+		ft_lstdelone(ft_lstlast(seq_list), &ft_delete)
+	}
+	ft_lstclear(seq_list, &ft_delete);
 }
 
 //// SOLUTION 2:

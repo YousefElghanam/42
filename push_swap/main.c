@@ -3,7 +3,7 @@
 void	print_sorted(t_stack *stack)
 {
 	t_node *node = stack->head;
-	ft_printf("\nsorted	:	");
+	ft_printf("sorted	:	");
 	while (node)
 	{
 		ft_putnbr_fd(node->num, 1);
@@ -18,13 +18,14 @@ void	print_sorted(t_stack *stack)
 		ft_printf("	");
 		node = node->next;
 	}
+	ft_printf("\n");
 }
 
 void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*node;
 
-	ft_printf("\bstack A (%d):	", stack_a->size);
+	ft_printf("\nstack A (%d):	", stack_a->size);
 	node = stack_a->head;
 	while (node)
 	{
@@ -41,7 +42,6 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 		ft_printf("	");
 		node = node->next;
 	}
-	ft_printf("\n", 1);
 }
 
 void	input_operations(t_stack *stack_a, t_stack *stack_b)
@@ -97,7 +97,8 @@ int	main(int argc, char **argv)
 	stack_b = init_stack_b();
 	stack_goal = init_sorted_stack(stack_a);
 
-	// print_sorted(stack_goal);
+	print_sorted(stack_goal);
+	print_stacks(stack_a, stack_b);
 
 	solve(stack_a, stack_b, stack_goal);
 
