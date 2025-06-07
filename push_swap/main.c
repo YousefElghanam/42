@@ -100,8 +100,8 @@ int	main(int argc, char **argv)
 	print_sorted(stack_goal);
 	print_stacks(stack_a, stack_b);
 
-	solve(stack_a, stack_b, stack_goal);
-
+	if (unsorted_in_a(stack_a, stack_goal) > 2)
+		solve(stack_a, stack_b, stack_goal);
 	ft_printf("\n\n");
 	print_stacks(stack_a, stack_b);
 	ft_printf("\n");

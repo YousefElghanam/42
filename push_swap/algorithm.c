@@ -65,6 +65,7 @@ void	split_a(t_stack *stack_a, t_stack *stack_b, t_node *starting_node)
 	reverse = 0;
 	i = 0;
 	len = len_from_here(starting_node);
+	ft_printf("11111111len from split_a is %d\nstarting node: %d\n", len, stack_a->head->num);
 	sorted = mk_sorted_stack(starting_node);
 	if (len != stack_a->size)
 		reverse = 1;
@@ -75,12 +76,14 @@ void	split_a(t_stack *stack_a, t_stack *stack_b, t_node *starting_node)
 		else
 			ra(stack_a, 1);
 	}
+	ft_printf("2222222222len from split_a is %d\nstarting node: %d\n", len_from_here(starting_node), stack_a->head->num);
 	if (reverse) // if stopped prev while loop before checking all, make sure you dont do more "rra" than necessary (change len)
 	{
 		len = (len % 2 != 0) + (len / 2);
 		while (len--)
 			rra(stack_a, 1);
 	}
+	ft_printf("33333333333len from split_a is %d\nstarting node: %d\n", len_from_here(starting_node), stack_a->head->num);
 }
 
 size_t	unsorted_in_a(t_stack *stack_a, t_stack *stack_s)
@@ -132,7 +135,8 @@ void	sort_b_pa(t_stack *stack_a, t_stack *stack_b, size_t b_top)
 	b->prevprev = &stack_b->top->prev->prev->num;
 	if (b_top == 2)
 	{
-		sb(stack_b, 1);
+		if (stack_b->top->num < stack_b->top->prev->num)
+			sb(stack_b, 1);
 		pa(stack_a, stack_b);
 		pa(stack_a, stack_b);
 	}
@@ -175,18 +179,17 @@ t_node	*b_split_starting_node(t_stack *stack_b, size_t *seq_len)
 void	split_b(t_stack *stack_a, t_stack *stack_b, t_list **seq_list)
 {
 	t_node	*starting_node;
+	t_list	*last_seq;
 	size_t	i;
 	size_t	*len;
 	t_stack	*sorted;
 	int		reverse;
 	size_t	rev_count;
 
+	last_seq = ft_lstlast(*seq_list);
 	reverse = 0;
 	rev_count = 0;
-	if (*seq_list)
-		starting_node = b_split_starting_node(stack_b, ft_lstlast(*seq_list)->content);
-	else
-		starting_node = stack_b->head;
+	starting_node = b_split_starting_node(stack_b, ft_lstlast(*seq_list)->content);
 	i = 0;
 	len = (size_t *)ft_lstlast(*seq_list)->content;
 	sorted = mk_sorted_stack(starting_node);
@@ -195,7 +198,10 @@ void	split_b(t_stack *stack_a, t_stack *stack_b, t_list **seq_list)
 	while (i++ < *len) // can make it stop doing "ra" if no more left (but still keep track of how many "ra" we did if we need to "rra" back)
 	{
 		if (is_top_half(sorted->head ,stack_b->top))
+		{
 			pa(stack_a, stack_b);
+			*(size_t *)last_seq->content -= 1;
+		}
 		else
 		{
 			rev_count++;
@@ -204,77 +210,123 @@ void	split_b(t_stack *stack_a, t_stack *stack_b, t_list **seq_list)
 	}
 	if (reverse) // if stopped prev while loop before checking all, make sure you dont do more "rra" than necessary (change len)
 		while (rev_count--)
-			rra(stack_a, 1);
+			rrb(stack_b, 1);
+}
+
+void	add_seq(t_list **seq_list, t_stack *stack_b, t_node *prev_seq_end) // leaks are possible if one of the programs other errors happend and i have a sequence allocated
+{
+	size_t	*len;
+	t_list	*node;
+
+	len = malloc(sizeof(size_t));
+	if (!len)
+	{
+		ft_lstclear(seq_list, &ft_delete);
+		return_error(2);
+	}
+	if (prev_seq_end)
+		*len = len_from_here(prev_seq_end->next);
+	else
+		*len = len_from_here(stack_b->head);
+	node = ft_lstnew(len);
+	if (!node)
+	{
+		free(len);
+		ft_lstclear(seq_list, &ft_delete);
+		return_error(2);
+	}
+	ft_lstadd_back(seq_list, node);
+}
+
+void	print_seqs(t_list **seq_list)
+{
+	t_list	*node;
+
+	node = *seq_list;
+	while (node && node->content)
+	{
+		ft_printf("seq: %d\n", *(size_t *)node->content);
+		node = node->next;
+	}
+	ft_printf("prev was sequences\n");
+}
+
+void	delete_seq(t_list **seq_list)
+{
+	size_t	list_len;
+	t_list	*prev;
+	t_list	*node;
+
+	list_len = 0;
+	prev = NULL;
+	node = *seq_list;
+	while (node && node->next)
+	{
+		list_len++;
+		prev = node;
+		node = node->next;
+	}
+	ft_printf("\ndeleteing seq of size %d\n", *(size_t *)(node->content));
+	ft_lstdelone(node, &ft_delete);
+	if (prev)
+		prev->next = NULL;
+	else
+		*seq_list = NULL;
+	print_seqs(seq_list);
+}
+
+void	split_a_main(t_stack *stack_a, t_stack *stack_b, t_stack *stack_s, t_node *starting_node, t_list **seq_list)
+{
+	t_node	*prev_seq_last;
+
+	while (len_from_here(starting_node) > 3)
+	{
+		ft_printf("\n111len_from_here is: %d\nstack_a size: %d\n", len_from_here(stack_a->head), stack_a->size);
+		ft_printf("\nstack_a->head: %d\nstarting_node: %d\n", stack_a->head->num, starting_node->num);
+		prev_seq_last = stack_b->top;
+		split_a(stack_a, stack_b, starting_node);
+		ft_printf("\n222len_from_here is: %d\nstack_a size: %d\n", len_from_here(stack_a->head), stack_a->size);
+		add_seq(seq_list, stack_b, prev_seq_last);
+		ft_printf("\n333len_from_here is: %d\nstack_a size: %d\n", len_from_here(stack_a->head), stack_a->size);
+	}
+	sort_and_pa(stack_a, stack_b, stack_s, *((size_t *)ft_lstlast(*seq_list)->content));
+	delete_seq(seq_list);
 }
 
 void	solve(t_stack *stack_a, t_stack *stack_b, t_stack *stack_s)
 {
 	t_list	**seq_list;
-	t_list	*seq_node;
-	size_t	*len;
 	t_node	*a_top;
 
-	seq_list = ft_malloc(sizeof(t_list **));
+	seq_list = malloc(sizeof(t_list **));
+	if (!seq_list)
+		return_error(2);
 	*seq_list = NULL;
-	if (stack_s)
-	while (len_from_here(stack_a->head) > 3)
-	{
-		t_node	*b_top = stack_b->top;
-		split_a(stack_a, stack_b, stack_a->head);
-		len = malloc(sizeof(size_t));
-		if (b_top)
-			*len = len_from_here(b_top->next);
-		else
-			*len = len_from_here(stack_b->head);
-		seq_node = ft_lstnew(len);
-		if (!seq_node)
-		{
-			ft_lstclear(seq_list, &ft_delete);
-			return_error(2);
-		}
-		ft_lstadd_back(seq_list, seq_node);
-	}
-	t_list *test_node = *seq_list;
-	while (test_node)
-	{
-		ft_printf("seq: %d\n", *(size_t *)test_node->content);
-		test_node = test_node->next;
-	}
-	// PREV WHILE LOOP REPLACEMENT ||
-	//							   VV
-	// init_split_a(stack_a, stack_b, stack_a->head);
-	sort_and_pa(stack_a, stack_b, stack_s, *((size_t *)ft_lstlast(*seq_list)->content));
-	ft_lstdelone(ft_lstlast(*seq_list), &ft_delete);
-	// test_node = *seq_list;
-	// while (test_node)
-	// {
-	// 	ft_printf("seq: %d\n", *(size_t *)test_node->content);
-	// 	test_node = test_node->next;
-	// }
+	split_a_main(stack_a, stack_b, stack_s, stack_a->head, seq_list);
 	while (stack_b->size)
 	{
 		a_top = stack_a->top;
-		split_b(stack_a, stack_b, seq_list); // there is a case where i could split 3 numbers only !! need to handle it most efficiently
-		/////
-		while (len_from_here(a_top->next) > 3)
-		{
-			split_a(stack_a, stack_b, a_top->next);
-			len = malloc(sizeof(size_t));
-			*len = len_from_here(stack_a->head) / 2;
-			seq_node = ft_lstnew(len);
-			if (!seq_node)
-			{
-				ft_lstclear(seq_list, &ft_delete);
-				return_error(2);
-			}
-			ft_lstadd_back(seq_list, seq_node);
-		}
-		/////
-		sort_and_pa(stack_a, stack_b, stack_s, *(size_t *)ft_lstlast(*seq_list)->content);
-		ft_lstdelone(ft_lstlast(*seq_list), &ft_delete);
+		if (*(size_t *)ft_lstlast(*seq_list)->content > 3)
+			split_b(stack_a, stack_b, seq_list); // there is a case where i could split 3 numbers only !! need to handle it most efficiently
+		split_a_main(stack_a, stack_b, stack_s, a_top->next, seq_list);
 	}
-	ft_lstclear(seq_list, &ft_delete);
+	free(seq_list);
 }
+
+
+		// while (len_from_here(a_top->next) > 3)
+		// {
+		// 	split_a(stack_a, stack_b, a_top->next);
+		// 	len = malloc(sizeof(size_t));
+		// 	*len = len_from_here(stack_a->head) / 2;
+		// 	seq_node = ft_lstnew(len);
+		// 	if (!seq_node)
+		// 	{
+		// 		ft_lstclear(seq_list, &ft_delete);
+		// 		return_error(2);
+		// 	}
+		// 	ft_lstadd_back(seq_list, seq_node);
+		// }
 
 //// SOLUTION 2:
 
