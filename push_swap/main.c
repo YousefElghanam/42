@@ -25,7 +25,7 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*node;
 
-	ft_printf("\nstack A (%d):	", stack_a->size);
+	ft_printf("\nstack A (%d)(head:%d)(top:%d):	", stack_a->size, stack_a->head->num, stack_a->top->num);
 	node = stack_a->head;
 	while (node)
 	{
@@ -34,7 +34,10 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 		node = node->next;
 	}
 
-	ft_printf("\nstack B (%d):	", stack_b->size);
+	if (stack_b->head && stack_b->top)
+		ft_printf("\nstack B (%d)(head:%d)(top:%d):	", stack_b->size, stack_b->head->num, stack_b->top->num);
+	else
+		ft_printf("\nstack B (%d)(head:%p)(top:%p):	", stack_b->size, NULL, NULL);
 	node = stack_b->head;
 	while (node)
 	{
@@ -84,28 +87,51 @@ void	input_operations(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
+void	sort_stack_of_three(t_stack *stack_a, t_stack *stack_b)
+{
+	pb(stack_a, stack_b);
+	pb(stack_a, stack_b);
+	pb(stack_a, stack_b);
+	sort_b_pa(stack_a, stack_b, 3);
+}
+
+void	sort_stack_of_two(t_stack *stack_a, t_stack *stack_b)
+{
+	pb(stack_a, stack_b);
+	pb(stack_a, stack_b);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	t_stack	*stack_goal;
+	t_stack	*stack_s;
 
 	if (!ft_alloc_list() || argc < 2)
 		return_error(3);
-	validate_args((size_t)argc, argv);
-	stack_a = init_stack_a((size_t)argc - 1, argv);
+	parse_args(&argc, &argv);
+	stack_a = init_stack_a(argc, argv);
 	stack_b = init_stack_b();
-	stack_goal = init_sorted_stack(stack_a);
+	stack_s = init_sorted_stack(stack_a);
 
-	print_sorted(stack_goal);
-	print_stacks(stack_a, stack_b);
+	// print_sorted(stack_s);
+	// print_stacks(stack_a, stack_b);
 
-	if (unsorted_in_a(stack_a, stack_goal) > 2)
-		solve(stack_a, stack_b, stack_goal);
-	ft_printf("\n\n");
-	print_stacks(stack_a, stack_b);
-	ft_printf("\n");
+	// if (stack_a->size == 3)
+	// 	sort_stack_of_three(stack_a);
+	// else if (stack_a->size == 2)
+	// 	sort_stack_of_two(stack_a);
+	if (unsorted_in_a(stack_a, stack_s) > 2)
+		solve(stack_a, stack_b, stack_s);
 
+	// ft_printf("\n\n");
+	// print_stacks(stack_a, stack_b);
+	// ft_printf("\n");
+
+	// if (unsorted_in_a(stack_a, stack_s) > 0)
+	// 	ft_printf("\nNOT SORTED\n");
+	// else
+	// 	ft_printf("\nCONGRATULATIONS !!!!!\n");
 	// input_operations(stack_a, stack_b);
 
 	ft_lstclear(ft_alloc_list(), &ft_delete);

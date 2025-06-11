@@ -35,11 +35,13 @@ typedef struct s_stack
 	t_node	*top;
 }	t_stack;
 
-void	validate_args(size_t argc, char **argv);
+void	print_stacks(t_stack *stack_a, t_stack *stack_b);
+
+void	parse_args(int *argc, char ***argv);
 
 void	solve(t_stack *stack_a, t_stack *stack_b, t_stack *sorted_stack);
 
-t_stack	*init_stack_a(size_t n_count, char **argv);
+t_stack	*init_stack_a(int n_count, char **argv);
 t_stack	*init_stack_b(void);
 t_stack	*init_sorted_stack(t_stack *stack);
 
@@ -71,13 +73,13 @@ void	ft_delete(void *ptr);
 
 void	return_error(int state, ...);
 
-/// new functions
 size_t	len_from_here(t_node *starting_node);
 t_stack	*mk_sorted_stack(t_node *starting_node);
 int		is_top_half(t_node *starting_node, t_node *target_node);
 void	split_a(t_stack *stack_a, t_stack *stack_b, t_node *starting_node);
 size_t	unsorted_in_a(t_stack *stack_a, t_stack *stack_s);
 void	sort_two_two(t_stack *stack_a,t_stack *stack_b);
+void	sort_b_pa(t_stack *stack_a,t_stack *stack_b,size_t b_top);
 void	sort_and_pa(t_stack *stack_a, t_stack *stack_b, t_stack *stack_s, size_t b_top);
 t_node	*b_split_starting_node(t_stack *stack_b, size_t *seq_len);
 void	split_b(t_stack *stack_a, t_stack *stack_b, t_list **seq_list);

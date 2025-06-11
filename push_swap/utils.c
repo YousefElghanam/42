@@ -9,6 +9,8 @@ void	return_error(int state, ...)
 		write(1, "Error\n", 5);
 	else if (state == 2)
 		write(1, "Allocation Error\n", 17);
+	else if (state == 3)
+		write(1, "Not enough arguments\n", 21);
 	else if (state == 4)
 		write(1, "Duplicate Number\n", 17);
 	else if (state == 5)

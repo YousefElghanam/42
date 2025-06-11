@@ -7,11 +7,11 @@ void	sa(t_stack *stack, int print)
 
 	if (stack->size < 2)
 	{
-		ft_printf("\nsa (nothing)");
+		ft_printf("sa (nothing)");
 		return ;
 	}
 	if (print)
-		ft_printf("\nsa");
+		ft_printf("sa\n");
 	top = stack->top;
 	prev = top->prev;
 	if (prev->prev)
@@ -32,11 +32,11 @@ void	sb(t_stack *stack, int print)
 
 	if (stack->size < 2)
 	{
-		ft_printf("\nsb (nothing)");
+		ft_printf("sb (nothing)");
 		return ;
 	}
 	if (print)
-		ft_printf("\nsb");
+		ft_printf("sb\n");
 	top = stack->top;
 	prev = top->prev;
 	if (prev->prev)
@@ -52,7 +52,7 @@ void	sb(t_stack *stack, int print)
 
 void	ss(t_stack *stack_a, t_stack *stack_b)
 {
-	ft_printf("\nss");
+	ft_printf("ss\n");
 	sa(stack_a, 0);
 	sb(stack_b, 0);
 }

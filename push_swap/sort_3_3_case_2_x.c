@@ -25,7 +25,6 @@ void	sort_2_2(t_stack *stack_a, t_stack *stack_b)
 
 void	sort_2_3(t_stack *stack_a, t_stack *stack_b)
 {
-	sb(stack_b, 1);
 	rr(stack_a, stack_b);
 	ss(stack_a, stack_b);
 	rrr(stack_a, stack_b);

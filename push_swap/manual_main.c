@@ -24,7 +24,7 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*node;
 
-	ft_printf("\bstack A (%d):	", stack_a->size);
+	ft_printf("\nstack A (%d)(head:%d)(top:%d):	", stack_a->size, stack_a->head->num, stack_a->top->num);
 	node = stack_a->head;
 	while (node)
 	{
@@ -32,8 +32,10 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 		ft_printf("	");
 		node = node->next;
 	}
-
-	ft_printf("\nstack B (%d):	", stack_b->size);
+	if (stack_b->head && stack_b->top)
+		ft_printf("\nstack B (%d)(head:%d)(top:%d):	", stack_b->size, stack_b->head->num, stack_b->top->num);
+	else
+		ft_printf("\nstack B (%d)(head:%p)(top:%p):	", stack_b->size, NULL, NULL);
 	node = stack_b->head;
 	while (node)
 	{
@@ -92,8 +94,8 @@ int	main(int argc, char **argv)
 
 	if (!ft_alloc_list() || argc < 2)
 		return_error(3);
-	validate_args((size_t)argc, argv);
-	stack_a = init_stack_a((size_t)argc - 1, argv);
+	parse_args(&argc, &argv);
+	stack_a = init_stack_a((size_t)argc, argv);
 	stack_b = init_stack_b();
 	stack_goal = init_sorted_stack(stack_a);
 

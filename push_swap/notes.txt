@@ -1,3 +1,9 @@
+optimization 1:
+	- when i'm splitting i could stop rotating if i put all of lower half to B already.
+	- when i'm splitting i could rotate the num that should be on the edge whenenver i push it so it will always be on top
+		(this makes the sequence shorter by 1 number because i always have it sorted and it costs between 0 and 2 ops)
+	- cancel operations that are the reverse of previous operations (by reading the output and changing it)
+
 operations use cases:
 
 1.	make a function that checks if after initial splitting you actually
@@ -42,7 +48,7 @@ sb rr ss rrr sb		rr ss rrr sb		rr ss rrr			sb rr ss rrr		ra ss rra			ra sa rra
 6 5 4				6 4 5				5 4 6				5 6 4				4 6 5				4 5 6
 ss rb sb rrb sb		rb ss rrb sb		sa pa sb pa pa		ss pa sb pa pa		ss					sa
 
-3 2 1				3 2 1				3 2 1				3 2 1***???***		3 2 1				3 2 1
+3 2 1z				3 2 1				3 2 1				3 2 1***???***		3 2 1				3 2 1
 6 5 4				6 4 5				5 4 6				5 6 4				4 6 5				4 5 6
 sb rb sb rrb sb		rb sb rrb sb		rb sb rrb			sb pa sb pa pa		sb					-
 
@@ -107,4 +113,7 @@ rb sb pa pa rrb pa		rb sb pa rrb pa pa		pa sb pa pa			sb pa sb pa pa		sb			-
 
 
 
-100   63   90   10   64   59   67   98   93   48   61   40   11   25   76    2   81   97   33   15    9   22   75   36   24   71   92   39   80   37   79   91   32    1   85   51   42   44   31    7   20   87   69   82   19   73    5   16   45   26   99   57   43   77   54   27   94   58   84   21   52   66    4    8   49   62   96   88   72   12   74   17   65   35   46   83   56   30   38   89   70   55   95   47   18   29   23   78   28   14   34   68   50   60    6   13   53    3   41   86
+seq1 766(719cancel-op)	: 100   63   90   10   64   59   67   98   93   48   61   40   11   25   76    2   81   97   33   15    9   22   75   36   24   71   92   39   80   37   79   91   32    1   85   51   42   44   31    7   20   87   69   82   19   73    5   16   45   26   99   57   43   77   54   27   94   58   84   21   52   66    4    8   49   62   96   88   72   12   74   17   65   35   46   83   56   30   38   89   70   55   95   47   18   29   23   78   28   14   34   68   50   60    6   13   53    3   41   86
+seq2 72					: 108 107 106 105 104 103 102 101 8 7 6 5 4 3 2 1
+seq3 72					: 108 8 107 7 106 6 105 5 104 4 103 3 102 2 101 1
+seq4 					: 

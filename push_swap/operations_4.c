@@ -6,11 +6,11 @@ void	rra(t_stack *stack, int print)
 
 	if (stack->size == 0 || stack->size == 1)
 	{
-		ft_printf("\nrra (nothing)\n");
+		ft_printf("rra (nothing)\n");
 		return ;
 	}
 	if (print)
-		ft_printf("\nrra");
+		ft_printf("rra\n");
 	node = stack->head;
 	stack->head = node->next;
 	node->prev = NULL;
@@ -26,11 +26,11 @@ void	rrb(t_stack *stack, int print)
 
 	if (stack->size == 0 || stack->size == 1)
 	{
-		ft_printf("\nrrb (nothing)\n");
+		ft_printf("rrb (nothing)\n");
 		return ;
 	}
 	if (print)
-		ft_printf("\nrrb");
+		ft_printf("rrb\n");
 	node = stack->head;
 	stack->head = node->next;
 	node->prev = NULL;
@@ -42,7 +42,7 @@ void	rrb(t_stack *stack, int print)
 
 void	rrr(t_stack *stack_a, t_stack *stack_b)
 {
-	ft_printf("\nrrr");
+	ft_printf("rrr\n");
 	rra(stack_a, 0);
 	rrb(stack_b, 0);
 }

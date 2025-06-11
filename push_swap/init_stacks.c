@@ -1,8 +1,8 @@
 #include "push_swap.h"
 
-t_stack	*init_stack_a(size_t n_count, char **argv)
+t_stack	*init_stack_a(int n_count, char **argv)
 {
-	size_t	i;
+	int		i;
 	t_stack	*stack;
 	t_node	*node;
 
@@ -15,7 +15,7 @@ t_stack	*init_stack_a(size_t n_count, char **argv)
 	stack->size = 0;
 	while (i < n_count)
 	{
-		node = new_node(ft_atoi(argv[n_count - i]), 0);
+		node = new_node(ft_atoi(argv[n_count - i - 1]), 0);
 		push_node(node, stack);
 		i++;
 	}

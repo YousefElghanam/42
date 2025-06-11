@@ -44,23 +44,42 @@ int	is_valid_int(char *str)
 	return (1);
 }
 
-void	validate_args(size_t argc, char **argv)
+char	**handle_single_arg(int *argc, char **argv)
 {
-	size_t	i;
+	char	**arr;
+	int		i;
+
+	i = 0;
+	arr = ft_split(argv[1], ' ');
+	while (arr[i])
+		i++;
+	*argc = i;
+	return (arr);
+}
+
+void	parse_args(int *argc, char ***argv)
+{
+	int		i;
 	t_set	set;
 	int		num;
 
-	if (argc < 2)
-		return ;
 	i = 0;
-	init_set(&set, argc - 1);
-	while (++i < argc)
+	if (*argc == 2)
+		*argv = handle_single_arg(argc, *argv);
+	else
 	{
-		if (!is_valid_int(argv[i]))
+		*argc -= 1;
+		*argv = *argv + 1;
+	}
+	init_set(&set, *argc);
+	while (i < *argc)
+	{
+		if (!is_valid_int((*argv)[i]))
 			return_error(1);
-		num = ft_atoi(argv[i]);
+		num = ft_atoi((*argv)[i]);
 		if (in_set(&set, num))
 			return_error(4);
 		add_to_set(&set, num);
+		i++;
 	}
 }
