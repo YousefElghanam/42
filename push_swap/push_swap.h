@@ -35,6 +35,24 @@ typedef struct s_stack
 	t_node	*top;
 }	t_stack;
 
+typedef struct s_opnode
+{
+	char			*op;
+	struct s_opnode	*next;
+	struct s_opnode	*prev;
+}	t_opnode;
+
+typedef struct s_opstack
+{
+	size_t		size;
+	t_opnode	*head;
+	t_opnode	*top;
+}	t_opstack;
+
+t_stack	*op_stack(void);
+void	add_op(int op);
+t_node	*pop(t_stack *stack);
+
 void	print_stacks(t_stack *stack_a, t_stack *stack_b);
 
 void	parse_args(int *argc, char ***argv);

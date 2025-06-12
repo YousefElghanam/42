@@ -250,9 +250,10 @@ pb
 pb
 rb
 pb
-ra
-rrr
-rra
+ra	> ra	> 0
+rrr	> rra	> 0
+	> rrb	> rrb > 0
+rra	> rra	> rra > rrr
 rra
 rb
 ss
@@ -327,9 +328,7 @@ pb
 pb
 pb
 pb
-ra
 rrr
-rra
 rra
 rra
 pb
@@ -501,7 +500,6 @@ rra
 rra
 rra
 rra
-rra
 pb
 rb
 pb
@@ -640,8 +638,6 @@ pb
 rrr
 rra
 rra
-rra
-rra
 pb
 rb
 pb
@@ -650,8 +646,7 @@ rrr
 rra
 pb
 pb
-rb
-rrr
+rra
 rra
 ss
 pa

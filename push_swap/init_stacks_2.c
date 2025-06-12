@@ -16,6 +16,8 @@ t_node	*new_node(int num, size_t pos)
 
 void	push_node(t_node *node, t_stack *stack)
 {
+	if (!node)
+		return_error(2);
 	if (stack->size == 0)
 		stack->head = node;
 	else

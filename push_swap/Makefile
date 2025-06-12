@@ -10,7 +10,7 @@ HEADER = push_swap.h libft/libft.h
 
 SOURCES = main.c validate_args.c very_special_set.c ft_malloc.c init_stacks.c init_stacks_2.c \
 		utils.c operations.c operations_2.c operations_3.c operations_4.c algorithm.c \
-		compare.c sort.c \
+		compare.c sort.c result.c \
 		sort_2_3_case_1_x.c \
 		sort_2_3_case_1_y.c \
 		sort_2_3_case_2_x.c \

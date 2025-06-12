@@ -101,13 +101,48 @@ void	sort_stack_of_two(t_stack *stack_a, t_stack *stack_b)
 	pb(stack_a, stack_b);
 }
 
+void	print_op_name(t_node *node)
+{
+	if (node->num == 0)
+		ft_printf("sa\n");
+	if (node->num == 1)
+		ft_printf("sb\n");
+	if (node->num == 2)
+		ft_printf("ss\n");
+	if (node->num == 3)
+		ft_printf("pa\n");
+	if (node->num == 4)
+		ft_printf("pb\n");
+	if (node->num == 5)
+		ft_printf("ra\n");
+	if (node->num == 6)
+		ft_printf("rb\n");
+	if (node->num == 7)
+		ft_printf("rr\n");
+	if (node->num == 8)
+		ft_printf("rra\n");
+	if (node->num == 9)
+		ft_printf("rrb\n");
+	if (node->num == 10)
+		ft_printf("rrr\n");
+}
+
+void	print_ops(t_node *node)
+{
+	while (node)
+	{
+		print_op_name(node);
+		node = node->next;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 	t_stack	*stack_s;
 
-	if (!ft_alloc_list() || argc < 2)
+	if (!ft_alloc_list() || !op_stack() || argc < 2)
 		return_error(3);
 	parse_args(&argc, &argv);
 	stack_a = init_stack_a(argc, argv);
@@ -133,6 +168,9 @@ int	main(int argc, char **argv)
 	// else
 	// 	ft_printf("\nCONGRATULATIONS !!!!!\n");
 	// input_operations(stack_a, stack_b);
+
+	// ft_printf("SEP\n");
+	print_ops(op_stack()->head);
 
 	ft_lstclear(ft_alloc_list(), &ft_delete);
 	free(ft_alloc_list());

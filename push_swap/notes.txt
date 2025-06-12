@@ -1,15 +1,14 @@
+!!!!!!!!!! CHECK STACKING FUNCTIONS THAT CALL MALLOC
+
 optimization 1:
 	- when i'm splitting i could stop rotating if i put all of lower half to B already.
 	- when i'm splitting i could rotate the num that should be on the edge whenenver i push it so it will always be on top
 		(this makes the sequence shorter by 1 number because i always have it sorted and it costs between 0 and 2 ops)
 	- cancel operations that are the reverse of previous operations (by reading the output and changing it)
 
-operations use cases:
-
-1.	make a function that checks if after initial splitting you actually
-	need to rrr (check future rrr's pairs if they actually need sorting)
-
-2.	same as 1. but for shake sort. possible ??
+optimization 2:
+	- i can check the output for rr operations and reverse them to ra rb or rb ra, only if before that rr is a rra or rrb
+		so i can cancel ra with rra to 0, and possibly cancel rb with rrb if its in prev or next
 
 ALGORITHM #2:
 1. keep exctracting lower half of stack A and push them to B untill you have ~2 nums in A

@@ -40,14 +40,15 @@ void	pa(t_stack *stack_a, t_stack *stack_b)
 
 	if (stack_b->size == 0)
 	{
-		ft_printf("pa (nothing)");
+		// ft_printf("nothing\n");
+		add_op(-1);
 		return ;
 	}
-	ft_printf("pa\n");
+	// ft_printf("pa\n");
+	add_op(3);
 	node = pop(stack_b);
 	push(node, stack_a);
 }
-
 
 void	pb(t_stack *stack_a, t_stack *stack_b)
 {
@@ -55,10 +56,12 @@ void	pb(t_stack *stack_a, t_stack *stack_b)
 	
 	if (stack_a->size == 0)
 	{
-		ft_printf("pb (nothing)");
+		// ft_printf("nothing");
+		add_op(-1);
 		return ;
 	}
-	ft_printf("pb\n");
+	// ft_printf("pb\n");
+	add_op(4);
 	node = pop(stack_a);
 	push(node, stack_b);
 }
