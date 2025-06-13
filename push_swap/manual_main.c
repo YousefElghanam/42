@@ -92,7 +92,7 @@ int	main(int argc, char **argv)
 	t_stack	*stack_b;
 	t_stack	*stack_goal;
 
-	if (!ft_alloc_list() || argc < 2)
+	if (!ft_alloc_list() || !op_stack() || argc < 2)
 		return_error(3);
 	parse_args(&argc, &argv);
 	stack_a = init_stack_a((size_t)argc, argv);

@@ -45,6 +45,7 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 		ft_printf("	");
 		node = node->next;
 	}
+	ft_printf("\n");
 }
 
 void	input_operations(t_stack *stack_a, t_stack *stack_b)
@@ -136,42 +137,87 @@ void	print_ops(t_node *node)
 	}
 }
 
+void	add_to_argv(int *argc, char ***argv, char *line)
+{
+	char	**new_argv;
+	int		i;
+
+	i = 1;
+	ft_printf("argc is: %d\n", *argc);
+	new_argv = ft_malloc((*argc + 1) * sizeof(char *));
+	if (!new_argv)
+		return_error(2);
+	new_argv[0] = (*argv)[0];
+	while (i > 0 && i < *argc)
+	{
+		ft_memmove(new_argv[i], (*argv)[i], sizeof(char *));
+		i++;
+	}
+	new_argv[i - 1] = line;
+	*argv = new_argv;
+}
+
+void	manual_input(int *argc, char ***argv)
+{
+	char	*line;
+	int		flag;
+
+	line = NULL;
+	flag = 1;
+	while (line || flag)
+	{
+		flag = 0;
+		line = get_next_line(0);
+		if (!line)
+			break ;
+		line[ft_strlen(line) - 1] = 0;
+		add_to_argv(argc, argv, line);
+		ft_printf("line >>%s<<\n", line);
+		*argc += 1;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 	t_stack	*stack_s;
 
+	ft_alloc_list();
+	if (argc == 1)
+		manual_input(&argc, &argv);
 	if (!ft_alloc_list() || !op_stack() || argc < 2)
 		return_error(3);
 	parse_args(&argc, &argv);
 	stack_a = init_stack_a(argc, argv);
 	stack_b = init_stack_b();
 	stack_s = init_sorted_stack(stack_a);
-
-	// print_sorted(stack_s);
-	// print_stacks(stack_a, stack_b);
-
-	// if (stack_a->size == 3)
-	// 	sort_stack_of_three(stack_a);
+	print_sorted(stack_s);
+	
+	
+	print_stacks(stack_a, stack_b);
+	if (stack_a->size == 3)
+		sort_stack_of_three(stack_a, stack_b);
 	// else if (stack_a->size == 2)
 	// 	sort_stack_of_two(stack_a);
 	if (unsorted_in_a(stack_a, stack_s) > 2)
 		solve(stack_a, stack_b, stack_s);
 
 	// ft_printf("\n\n");
-	// print_stacks(stack_a, stack_b);
+	print_stacks(stack_a, stack_b);
 	// ft_printf("\n");
 
 	// if (unsorted_in_a(stack_a, stack_s) > 0)
 	// 	ft_printf("\nNOT SORTED\n");
 	// else
 	// 	ft_printf("\nCONGRATULATIONS !!!!!\n");
-	// input_operations(stack_a, stack_b);
+	input_operations(stack_a, stack_b);
 
 	// ft_printf("SEP\n");
 	print_ops(op_stack()->head);
 
+	// print_comb(500);
+	
 	ft_lstclear(ft_alloc_list(), &ft_delete);
 	free(ft_alloc_list());
 }

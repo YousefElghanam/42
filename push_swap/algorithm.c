@@ -55,7 +55,7 @@ int	is_top_half(t_node *starting_node, t_node *target_node)
 	return (0);
 }
 
-void	ra_edge_num(t_stack *stack_b, t_stack *sorted)
+void	rb_edge_num(t_stack *stack_b, t_stack *sorted)
 {
 	size_t	sorted_size;
 	t_node	*node;
@@ -64,7 +64,6 @@ void	ra_edge_num(t_stack *stack_b, t_stack *sorted)
 	node = sorted->head;
 	while (node)
 	{
-		// ft_printf("\nhere%d\n", sorted_size);
 		node = node->next;
 		sorted_size++;
 	}
@@ -74,14 +73,42 @@ void	ra_edge_num(t_stack *stack_b, t_stack *sorted)
 	{
 		node = node->next;
 	}
-	// ft_printf("\nNODE_NUM: %d\n", node->num);
 	if (stack_b && stack_b->top && stack_b->top->num == node->next->num)
 		rb(stack_b, 1);
-	// ft_printf("\nOMGGGGG\n");
-	// NEXT IS COMMENTED OUT BECAUSE I NEED TO IMPLEMENT THE OUTPUT CLEANING OPTIMIZATION
-	// if (is_top_half(sorted->head, stack_a->top))
-	// 	rr(stack_a, stack_b);
-	// else
+}
+
+void	ra_edge_num(t_stack *stack_a, t_stack *sorted)
+{
+	size_t	sorted_size;
+	t_node	*node;
+
+	sorted_size = 0;
+	node = sorted->head;
+	while (node)
+	{
+		node = node->next;
+		sorted_size++;
+	}
+	sorted_size /= 2;
+	node = sorted->head;
+	while (sorted_size--)
+	{
+		node = node->next;
+	}
+	if (stack_a && stack_a->top && stack_a->top->num == node->prev->num)
+	{
+		ra(stack_a, 1);
+	}
+}
+
+void	fix_a(t_stack *stack_a, size_t len, int reverse)
+{
+	if (reverse)
+	{
+		len = (len % 2 != 0) + (len / 2);
+		while (len-- > 0)
+			rra(stack_a, 1);
+	}
 }
 
 void	split_a(t_stack *stack_a, t_stack *stack_b, t_node *starting_node)
@@ -91,34 +118,26 @@ void	split_a(t_stack *stack_a, t_stack *stack_b, t_node *starting_node)
 	t_stack	*sorted;
 	int		reverse;
 
-	// ft_printf("\n222222222222len from split_a is %d\nstarting node: %d\n", len_from_here(starting_node), starting_node->num);
 	reverse = 0;
 	i = 0;
 	len = len_from_here(starting_node);
-	// ft_printf("11111111len from split_a is %d\nstarting node: %d\n", len, stack_a->head->num);
 	sorted = mk_sorted_stack(starting_node);
 	if (len != stack_a->size)
 		reverse = 1;
-	while (i++ < len) // can make it stop doing "ra" if no more left (but still keep track of how many "ra" we did if we need to "rra" back)
+	while (i++ < len)
 	{
 		if (!is_top_half(sorted->head ,stack_a->top))
 		{
 			pb(stack_a, stack_b);
-			ra_edge_num(stack_b, sorted);
+			if (len > 6)
+				rb_edge_num(stack_b, sorted);
 		}
 		else
 			ra(stack_a, 1);
 	}
-	rrb(stack_b, 1);
-	// ft_printf("2222222222len from split_a is %d\nstarting node: %d\n", len_from_here(starting_node), stack_a->head->num);
-	if (reverse) // if stopped prev while loop before checking all, make sure you dont do more "rra" than necessary (change len)
-	{
-		len = (len % 2 != 0) + (len / 2);
-		while (len-- > 0)
-			rra(stack_a, 1);
-	}
-	// print_stacks(stack_a, stack_b);
-	// ft_printf("\n33333333333len from split_a is %d\nstarting node: %d\n", len_from_here(starting_node), starting_node->num);
+	if (len > 6)
+		rrb(stack_b, 1);
+	fix_a(stack_a, len, reverse);
 }
 
 size_t	unsorted_in_a(t_stack *stack_a, t_stack *stack_s)
@@ -138,65 +157,6 @@ size_t	unsorted_in_a(t_stack *stack_a, t_stack *stack_s)
 		node_s = node_s->next;
 	}
 	return (i);
-}
-
-void	sort_two_two(t_stack *stack_a,t_stack *stack_b)
-{
-	if (stack_a->top->num > stack_a->top->prev->num)
-	{
-		if (stack_b->top->num < stack_b->top->prev->num)
-			ss(stack_a, stack_b);
-		else
-			sa(stack_a, 1);
-		pa(stack_a, stack_b);
-		pa(stack_a, stack_b);
-	}
-	else
-	{
-		if (stack_b->top->num < stack_b->top->prev->num)
-			sb(stack_b, 1);
-		pa(stack_a, stack_b);
-		pa(stack_a, stack_b);
-	}
-}
-
-void	sort_b_pa(t_stack *stack_a, t_stack *stack_b, size_t b_top)
-{
-	t_top	*b;
-
-	b = ft_malloc(sizeof(t_top));
-	b->top = &stack_b->top->num;
-	b->prev = &stack_b->top->prev->num;
-	b->prevprev = &stack_b->top->prev->prev->num;
-	if (b_top == 2)
-	{
-		if (stack_b->top->num < stack_b->top->prev->num)
-			sb(stack_b, 1);
-		pa(stack_a, stack_b);
-		pa(stack_a, stack_b);
-	}
-	else
-		choose_compare_b_2_3(stack_a, stack_b, b);
-}
-
-void	sort_and_pa(t_stack *stack_a, t_stack *stack_b, t_stack *stack_s, size_t b_top)
-{
-	size_t	a_top;
-
-	a_top = unsorted_in_a(stack_a, stack_s);
-	// ft_printf("\na_top: %d\nb_top: %d\n", a_top, b_top);
-	if (a_top == 3 && b_top == 3)
-		sort_three_three(stack_a, stack_b);
-	else if (a_top == 3 && b_top == 2)
-		sort_three_two(stack_a, stack_b);
-	else if (a_top == 2 && b_top == 3)
-		sort_two_three(stack_a, stack_b);
-	else if (a_top == 2 && b_top == 2)
-		sort_two_two(stack_a, stack_b);
-	else if (a_top == 0 && (b_top == 2 || b_top == 3))
-		sort_b_pa(stack_a, stack_b, b_top);
-	// else
-	// 	ft_printf("\n>>unkown combination to sort<<\n");
 }
 
 t_node	*b_split_starting_node(t_stack *stack_b, size_t *seq_len)
@@ -237,6 +197,8 @@ void	split_b(t_stack *stack_a, t_stack *stack_b, t_list **seq_list)
 		{
 			pa(stack_a, stack_b);
 			*(size_t *)last_seq->content -= 1;
+			if (len > 25)
+				ra_edge_num(stack_a, sorted);
 		}
 		else
 		{
@@ -244,6 +206,8 @@ void	split_b(t_stack *stack_a, t_stack *stack_b, t_list **seq_list)
 			rb(stack_b, 1);
 		}
 	}
+	if (len > 25)
+		rra(stack_a, 1);
 	if (reverse) // if stopped prev while loop before checking all, make sure you dont do more "rra" than necessary (change len)
 		while (rev_count--)
 			rrb(stack_b, 1);
@@ -302,13 +266,11 @@ void	delete_seq(t_list **seq_list)
 		prev = node;
 		node = node->next;
 	}
-	// ft_printf("\ndeleteing seq of size %d\n", *(size_t *)(node->content));
 	ft_lstdelone(node, &ft_delete);
 	if (prev)
 		prev->next = NULL;
 	else
 		*seq_list = NULL;
-	// print_seqs(seq_list);
 }
 
 void	split_a_main(t_stack *stack_a, t_stack *stack_b, t_stack *stack_s, t_node *starting_node, t_list **seq_list)
@@ -324,28 +286,16 @@ void	split_a_main(t_stack *stack_a, t_stack *stack_b, t_stack *stack_s, t_node *
 		from_head = 1;
 	while (starting_node && len_from_here(starting_node) > 3)
 	{
-		// ft_printf("\nstack_a->head is: %d\nstarting_node is: %d\n", stack_a->head->num, starting_node->num);
-		// ft_printf("\n111len_from_here is: %d\nstack_a size: %d\n", len_from_here(starting_node), stack_a->size);
-		// ft_printf("\nstack_a->head: %d\nstarting_node: %d\n", stack_a->head->num, starting_node->num);
-		// print_stacks(stack_a, stack_b);
 		prev_seq_last = stack_b->top;
 		split_a(stack_a, stack_b, starting_node);
 		if (from_head)
 			starting_node = stack_a->head;
 		else
-		{
-			// ft_printf("\nprev is %d === next is %d\n", prev->num, prev->next->num);
 			starting_node = prev->next;
-		}
-		// ft_printf("\n111len_from_here is: %d\nstack_a size: %d\n", len_from_here(starting_node), stack_a->size);
 		add_seq(seq_list, stack_b, prev_seq_last);
-		// ft_printf("\n333len_from_here is: %d\nstack_a size: %d\n", len_from_here(starting_node), stack_a->size);
 	}
-	// ft_printf("\nstep3\n");
 	sort_and_pa(stack_a, stack_b, stack_s, *((size_t *)ft_lstlast(*seq_list)->content));
-	// ft_printf("\nstep4\n");
 	delete_seq(seq_list);
-	// ft_printf("\nstep5\n");
 }
 
 void	solve(t_stack *stack_a, t_stack *stack_b, t_stack *stack_s)

@@ -16,6 +16,44 @@ t_stack	*op_stack(void)
 // -1		0		1		2		3		4		5		6		7		8		9		10
 // nothin	sa		sb		ss		pa		pb		ra		rb		rr		rra		rrb		rrr
 
+int	can_rev_cancel(t_node *top)
+{
+	t_node	*prev;
+
+	prev = top->prev;
+	if (top->num == 2 && prev->num == 0) // sa ss => sb
+		return (1);
+	if (top->num == 2 && prev->num == 1) // sb ss => sa
+		return (2);
+	if (top->num == 10 && prev->num == 5) // ra rrr => rrb
+		return (3);
+	if (top->num == 10 && prev->num == 6) // rb rrr => rra
+		return (4);
+	if (top->num == 7 && prev->num == 8) // rra rr => rb
+		return (5);
+	if (top->num == 7 && prev->num == 9) // rrb rr => ra
+		return (6);
+	return (0);
+}
+
+void	rev_cancel(t_stack *stack, int state)
+{
+	pop(stack);
+	pop(stack);
+	if (state == 1)
+		add_op(1);
+	if (state == 2)
+		add_op(2);
+	if (state == 3)
+		add_op(9);
+	if (state == 4)
+		add_op(8);
+	if (state == 5)
+		add_op(6);
+	if (state == 6)
+		add_op(5);
+}
+
 static int	can_cancel(t_node *top)
 {
 	t_node	*prev;
@@ -39,8 +77,6 @@ static int	can_cancel(t_node *top)
 		return (7);
 	if ((top->num == 8 && prev->num == 9) || (top->num == 9 && prev->num == 8)) // rrb rra || rra rrb => rrr
 		return (8);
-	if (can_rev_cancel(top)) // the one that splits rr or rrr and cancels ra rra or rb rrb && the opposite
-		return (can_rev_cancel(top));
 	return (0);
 }
 
@@ -55,7 +91,9 @@ static void	cancel(t_stack *stack, int state)
 	else if (state == 7)
 		add_op(7);
 	else if (state == 8)
-		add_op(10);		
+		add_op(10);
+	if (stack && can_rev_cancel(stack->top))
+		rev_cancel(stack, can_rev_cancel(stack->top));
 }
 
 static void	push_op_node(t_node *node, t_stack *stack)

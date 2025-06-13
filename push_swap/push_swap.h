@@ -105,6 +105,9 @@ void	split_b(t_stack *stack_a, t_stack *stack_b, t_list **seq_list);
 void	sort_three_three(t_stack *stack_a, t_stack *stack_b);
 void	sort_three_two(t_stack *stack_a, t_stack *stack_b);
 void	sort_two_three(t_stack *stack_a, t_stack *stack_b);
+void	sort_two_two(t_stack *stack_a,t_stack *stack_b);
+void	sort_b_pa(t_stack *stack_a, t_stack *stack_b, size_t b_top);
+void	sort_and_pa(t_stack *stack_a, t_stack *stack_b, t_stack *stack_s, size_t b_top);
 
 int	compare_a_3(int *top, int *prev, int *prevprev);
 int	compare_a_2(int *top, int *prev);
