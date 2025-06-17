@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operations_2.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/15 12:22:59 by jel-ghna          #+#    #+#             */
+/*   Updated: 2025/06/15 12:43:37 by jel-ghna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_node	*pop(t_stack *stack)
@@ -5,7 +17,7 @@ t_node	*pop(t_stack *stack)
 	t_node	*node;
 
 	if (stack->size == 0)
-		return_error(5);
+		return_error(1);
 	node = stack->top;
 	stack->top = node->prev;
 	if (stack->size == 1)
@@ -40,11 +52,9 @@ void	pa(t_stack *stack_a, t_stack *stack_b)
 
 	if (stack_b->size == 0)
 	{
-		// ft_printf("nothing\n");
 		add_op(-1);
 		return ;
 	}
-	// ft_printf("pa\n");
 	add_op(3);
 	node = pop(stack_b);
 	push(node, stack_a);
@@ -53,14 +63,12 @@ void	pa(t_stack *stack_a, t_stack *stack_b)
 void	pb(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*node;
-	
+
 	if (stack_a->size == 0)
 	{
-		// ft_printf("nothing");
 		add_op(-1);
 		return ;
 	}
-	// ft_printf("pb\n");
 	add_op(4);
 	node = pop(stack_a);
 	push(node, stack_b);

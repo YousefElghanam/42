@@ -6,7 +6,7 @@
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 18:07:18 by jel-ghna          #+#    #+#             */
-/*   Updated: 2025/05/12 13:10:30 by jel-ghna         ###   ########.fr       */
+/*   Updated: 2025/06/15 20:54:21 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	ft_putnbr_base(long nbr, char *base)
 	int		count;
 
 	count = 0;
-	nb = 0;
 	if (nbr < 0)
 	{
 		write(1, "-", 1);

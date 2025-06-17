@@ -1,14 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_stacks_2.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/15 12:21:40 by jel-ghna          #+#    #+#             */
+/*   Updated: 2025/06/15 19:58:55 by jel-ghna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-t_node	*new_node(int num, size_t pos)
+t_node	*new_node(int num)
 {
 	t_node	*node;
 
 	node = ft_malloc(sizeof(t_node));
 	if (!node)
-		return_error(2);
+		return_error(1);
 	node->num = num;
-	node->position = pos;
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);
@@ -17,7 +28,7 @@ t_node	*new_node(int num, size_t pos)
 void	push_node(t_node *node, t_stack *stack)
 {
 	if (!node)
-		return_error(2);
+		return_error(1);
 	if (stack->size == 0)
 		stack->head = node;
 	else
@@ -50,10 +61,10 @@ void	sort_arr(int *arr, size_t size)
 	int		tmp;
 
 	i = 0;
-	while (i < size - 1)
+	while (i + 1 < size)
 	{
 		j = 0;
-		while (j < size - 1 - i)
+		while (j + 1 + i < size)
 		{
 			if (arr[j] > arr[j + 1])
 			{
@@ -74,12 +85,12 @@ t_stack	*arr_to_stack(int *arr, size_t size)
 
 	stack = ft_malloc(sizeof(t_stack));
 	if (!stack)
-		return_error(2);
+		return_error(1);
 	stack->head = NULL;
 	stack->top = NULL;
 	stack->size = 0;
 	i = 0;
 	while (i++ < size)
-		push_node(new_node(arr[size - i], size - i + 1), stack);
+		push_node(new_node(arr[size - i]), stack);
 	return (stack);
 }

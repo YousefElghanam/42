@@ -6,7 +6,7 @@
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 19:50:59 by josefelghna       #+#    #+#             */
-/*   Updated: 2025/05/01 12:17:31 by jel-ghna         ###   ########.fr       */
+/*   Updated: 2025/06/14 21:32:09 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,18 @@ t_list	*ft_lstnew(void *content)
 	t_list	*node;
 
 	node = malloc(sizeof(t_list));
+	if (!node)
+		return (NULL);
+	node->content = content;
+	node->next = NULL;
+	return (node);
+}
+
+t_list	*ft_lstnew_ft_malloc(void *content)
+{
+	t_list	*node;
+
+	node = ft_malloc(sizeof(t_list));
 	if (!node)
 		return (NULL);
 	node->content = content;

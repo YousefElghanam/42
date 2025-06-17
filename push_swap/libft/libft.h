@@ -6,7 +6,7 @@
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:54:09 by josefelghna       #+#    #+#             */
-/*   Updated: 2025/05/26 16:18:12 by jel-ghna         ###   ########.fr       */
+/*   Updated: 2025/06/14 21:43:47 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <stdint.h>
+# include <unistd.h>
 
 typedef struct s_list
 {
@@ -22,8 +23,17 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+void	*ft_malloc(size_t size);
+void	ft_add_address(void *ptr);
+t_list	**ft_alloc_list(void);
+void	ft_delete(void *ptr);
+void	return_error(int state, ...);
+
 char	*get_next_line(int fd);
 int		ft_printf(const char *format, ...);
+
+t_list	*ft_lstnew_ft_malloc(void *content);
+
 int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
