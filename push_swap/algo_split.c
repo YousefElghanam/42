@@ -6,7 +6,7 @@
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 12:16:39 by jel-ghna          #+#    #+#             */
-/*   Updated: 2025/06/15 12:16:41 by jel-ghna         ###   ########.fr       */
+/*   Updated: 2025/06/18 23:49:34 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ void	splt_a(t_stack *stk_a, t_stack *stk_b, t_node *starting_node)
 		if (!is_top_half(sorted->head, stk_a->top))
 		{
 			pb(stk_a, stk_b);
-			if (len > 6)
-				rb_edge_num(stk_b, sorted);
+			if (len > 6 && i + 3 < len)
+				rb_edge_num(stk_b, sorted, (void **)&starting_node);
 		}
 		else
 			ra(stk_a, 1);
 	}
-	if (len > 6)
+	if (!starting_node)
 		rrb(stk_b, 1);
 	fix_a(stk_a, len, reverse);
 }

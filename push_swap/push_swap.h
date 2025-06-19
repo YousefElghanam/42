@@ -6,7 +6,7 @@
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 12:28:34 by jel-ghna          #+#    #+#             */
-/*   Updated: 2025/06/15 13:54:09 by jel-ghna         ###   ########.fr       */
+/*   Updated: 2025/06/18 23:49:07 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	split_a(t_stack *stk_a, t_stack *stk_b, t_stack *stk_s, t_node *start);
 t_node	*b_splt_start(t_stack *stk_b, size_t *seq_len);
 void	fix_a(t_stack *stk_a, size_t len, int reverse);
 void	ra_edge_num(t_stack *stk_a, t_stack *sorted);
-void	rb_edge_num(t_stack *stk_b, t_stack *sorted);
+int		rb_edge_num(t_stack *stk_b, t_stack *sorted, void **j);
 
 void	sort_a_top(t_stack *stk_a, t_stack *stk_b);
 void	sort_b_top(t_stack *stk_a, t_stack *stk_b, size_t b_top);

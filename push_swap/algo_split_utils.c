@@ -6,7 +6,7 @@
 /*   By: jel-ghna <jel-ghna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 12:16:45 by jel-ghna          #+#    #+#             */
-/*   Updated: 2025/06/15 21:40:56 by jel-ghna         ###   ########.fr       */
+/*   Updated: 2025/06/18 23:48:33 by jel-ghna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	ra_edge_num(t_stack *stack_a, t_stack *sorted)
 		node = node->next;
 		sorted_size++;
 	}
-	sorted_size /= 2;
 	node = sorted->head;
+	sorted_size /= 2;
 	while (sorted_size-- && node)
 		node = node->next;
 	if (stack_a && stack_a->top && node && node->prev
@@ -55,7 +55,7 @@ void	ra_edge_num(t_stack *stack_a, t_stack *sorted)
 		ra(stack_a, 1);
 }
 
-void	rb_edge_num(t_stack *stack_b, t_stack *sorted)
+int	rb_edge_num(t_stack *stack_b, t_stack *sorted, void **j)
 {
 	size_t	sorted_size;
 	t_node	*node;
@@ -67,11 +67,14 @@ void	rb_edge_num(t_stack *stack_b, t_stack *sorted)
 		node = node->next;
 		sorted_size++;
 	}
-	sorted_size /= 2;
 	node = sorted->head;
+	if (sorted_size % 2 == 1)
+		node = node->next;
+	sorted_size /= 2;
 	while (sorted_size-- && node)
 		node = node->next;
-	if (stack_b && stack_b->top && node && node->next
-		&& stack_b->top->num == node->next->num)
-		rb(stack_b, 1);
+	if (stack_b && stack_b->top && node
+		&& stack_b->top->num == node->num)
+		return (rb(stack_b, 1), *j = NULL, 1);
+	return (0);
 }
